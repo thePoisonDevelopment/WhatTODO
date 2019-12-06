@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:spinnersShown="false"
+            android:datePickerMode="spinner"
             android:calendarViewShown="true"
             android:layout_marginTop="48dp"/>
 

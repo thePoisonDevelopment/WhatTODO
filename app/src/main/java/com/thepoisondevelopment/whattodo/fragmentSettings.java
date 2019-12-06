@@ -17,8 +17,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.Objects;
@@ -34,8 +37,10 @@ public class fragmentSettings extends Fragment {
 
     private static final String TAG = "Settings Fragment";
 
-    Button nav4_top_1create, nav4_top_2todolist,  nav4_top_3calendar,
-            btn_langEN, btn_langRU, btn_clear_all_data, btn_clear_database;
+    private String SpinnerLanguage;
+
+    Button nav4_top_1create, nav4_top_2todolist,  nav4_top_3calendar, btn_clear_all_data, btn_clear_database;
+    TextView tv_language_icon;
 
     TextView nav4_top_1create_text, nav4_top_2todolist_text, nav4_top_3calendar_text, nav4_top_4settings_text;
     TextView settings_text1, settings_text2, langauge_name;
@@ -63,14 +68,13 @@ public class fragmentSettings extends Fragment {
         nav4_top_1create = view.findViewById(R.id.nav4_top_1create);
         nav4_top_2todolist = view.findViewById(R.id.nav4_top_2todolist);
         nav4_top_3calendar = view.findViewById(R.id.nav4_top_3calendar);
-        btn_langEN = view.findViewById(R.id.btn_langEN);
-        btn_langRU = view.findViewById(R.id.btn_langRU);
 
         nav4_top_1create_text = view.findViewById(R.id.nav4_top_1create_text);
         nav4_top_2todolist_text = view.findViewById(R.id.nav4_top_2todolist_text);
         nav4_top_3calendar_text = view.findViewById(R.id.nav4_top_3calendar_text);
         nav4_top_4settings_text = view.findViewById(R.id.nav4_top_4settings_text);
         langauge_name = view.findViewById(R.id.stgs_langauge_label);
+        tv_language_icon = view.findViewById(R.id.tv_language_icon);
 
         stgs_view_label = view.findViewById(R.id.stgs_view_label);
         stgs_view_full_radio = view.findViewById(R.id.stgs_view_full_radio);
@@ -108,8 +112,48 @@ public class fragmentSettings extends Fragment {
             stgs_vibra_toggle.setBackgroundResource(R.drawable.toggle_off);
         }
 
+
+        Spinner spinner_language = view.findViewById(R.id.spinner_language);
+        ArrayAdapter<CharSequence> adapter_recordLang = ArrayAdapter.createFromResource  (Objects.requireNonNull(this.getActivity()), R.array.spinner_language, R.layout.spinner_color_layout_style_1);
+        spinner_language.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                SpinnerLanguage = parent.getItemAtPosition(position).toString();
+
+                switch (SpinnerLanguage){
+                    case "English":
+
+                        MainActivity.prf_Language = 0;
+                        tv_language_icon.setBackgroundResource(R.drawable.btn_lang_en_selected);
+
+                        ChanceLanguage(MainActivity.prf_Language);
+                        MainActivity.prf_Language = 0;
+                        ed.putInt("prfLanguage", MainActivity.prf_Language);
+                        ed.apply();
+                        break;
+                    case "Russian":
+
+                        MainActivity.prf_Language = 1;
+                        tv_language_icon.setBackgroundResource(R.drawable.btn_lang_ru_selected);
+
+                        ChanceLanguage(MainActivity.prf_Language);
+                        MainActivity.prf_Language = 0;
+                        ed.putInt("prfLanguage", MainActivity.prf_Language);
+                        ed.apply();
+
+                        break;
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+        spinner_language.setAdapter(adapter_recordLang);
+        spinner_language.setSelection(MainActivity.prf_Language);
+
         //Localisation
         ChanceLanguage(MainActivity.prf_Language);
+
+
 
 
         settings_rate_the_app.setOnClickListener(new View.OnClickListener() {
@@ -200,39 +244,6 @@ public class fragmentSettings extends Fragment {
                 stgs_view_compact_radio.setBackgroundResource(R.drawable.radio_false);
 
                 ed.putInt("prfFullView", MainActivity.prf_FullView);
-                ed.apply();
-
-            }
-        });
-
-
-        btn_langEN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MainActivity.prf_Language = 0;
-                btn_langRU.setBackgroundResource(R.drawable.btn_lang_ru);
-                btn_langEN.setBackgroundResource(R.drawable.btn_lang_en_selected);
-
-                ChanceLanguage(MainActivity.prf_Language);
-
-                ed.putInt("prfLanguage", MainActivity.prf_Language);
-                ed.apply();
-
-            }
-        });
-
-
-        btn_langRU.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                MainActivity.prf_Language = 1;
-                btn_langRU.setBackgroundResource(R.drawable.btn_lang_ru_selected);
-                btn_langEN.setBackgroundResource(R.drawable.btn_lang_en);
-
-                ChanceLanguage(MainActivity.prf_Language);
-
-                ed.putInt("prfLanguage", MainActivity.prf_Language);
                 ed.apply();
 
             }
@@ -399,8 +410,7 @@ public class fragmentSettings extends Fragment {
 
         switch (MainActivity.prf_Language) {
             case 0:
-                btn_langRU.setBackgroundResource(R.drawable.btn_lang_ru);
-                btn_langEN.setBackgroundResource(R.drawable.btn_lang_en_selected);
+                tv_language_icon.setBackgroundResource(R.drawable.btn_lang_en_selected);
 
                 nav4_top_1create_text.setText(R.string.create);
                 nav4_top_2todolist_text.setText(R.string.todos);
@@ -425,8 +435,8 @@ public class fragmentSettings extends Fragment {
                 break;
 
             case 1:
-                btn_langRU.setBackgroundResource(R.drawable.btn_lang_ru_selected);
-                btn_langEN.setBackgroundResource(R.drawable.btn_lang_en);
+                tv_language_icon.setBackgroundResource(R.drawable.btn_lang_ru_selected);
+
                 nav4_top_1create_text.setText(R.string.ru_create);
                 nav4_top_2todolist_text.setText(R.string.ru_todos);
                 nav4_top_4settings_text.setText(R.string.ru_settings);

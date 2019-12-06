@@ -423,13 +423,28 @@ public class fragmentTodo extends Fragment {
 
                         bundle.putString("MODE", "EDIT");
 
-                        Fragment targetFragment = new fragmentEdit();
-                        assert getFragmentManager() != null;
-                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                        transaction.replace(R.id.fragment_container, targetFragment ); // give your fragment container id in first parameter
-                        transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
-                        targetFragment.setArguments(bundle);
-                        transaction.commit();
+                        if (dbStatus == 3) {
+
+                            Fragment targetFragment = new fragmentCompleted();
+                            assert getFragmentManager() != null;
+                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            transaction.replace(R.id.fragment_container, targetFragment ); // give your fragment container id in first parameter
+                            transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+                            targetFragment.setArguments(bundle);
+                            transaction.commit();
+
+                        }else{
+
+                            Fragment targetFragment = new fragmentEdit();
+                            assert getFragmentManager() != null;
+                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            transaction.replace(R.id.fragment_container, targetFragment ); // give your fragment container id in first parameter
+                            transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+                            targetFragment.setArguments(bundle);
+                            transaction.commit();
+
+                        }
+
 
                     }
                 });

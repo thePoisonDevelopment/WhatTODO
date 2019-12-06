@@ -178,22 +178,26 @@
                 android:text="@string/language" />
 
 
-            <Button
-                android:id="@+id/btn_langEN"
+            <TextView
+                android:id="@+id/tv_language_icon"
                 android:layout_width="45dp"
                 android:layout_height="26dp"
-                android:layout_marginStart="100dp"
+                android:layout_marginStart="250dp"
                 android:layout_marginTop="3dp"
                 android:background="@drawable/btn_lang_en_selected" />
 
 
-            <Button
-                android:id="@+id/btn_langRU"
-                android:layout_width="45dp"
-                android:layout_height="26dp"
-                android:layout_marginStart="190dp"
-                android:layout_alignTop="@+id/btn_langEN"
-                android:background="@drawable/btn_lang_ru" />
+            <Spinner
+                android:id="@+id/spinner_language"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="90dp"
+                android:layout_marginTop="0dp"
+                android:foregroundGravity="center"
+                android:spinnerMode="dropdown"
+                android:background="#ff0000"
+                android:gravity="center_vertical"  />
+
 
 
             <TextView

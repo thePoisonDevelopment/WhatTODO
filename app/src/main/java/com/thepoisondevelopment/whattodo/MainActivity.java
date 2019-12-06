@@ -2,8 +2,11 @@ package com.thepoisondevelopment.whattodo;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Display;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
     public static int ListView_MONTH;
     public static int ListView_MODE;
 
+    public static int ScringWidthDP;
+    // This variable is needed to check the screen size and choose propoer layout
+
     public static int TimeFrame_Month, TimeFrame_Year, TimeFrame;
 
     @SuppressLint("StaticFieldLeak")
@@ -52,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
         prf_FullView = prefSettings.getInt("prfFullView",1); // Language
         prf_VibraFeedback = prefSettings.getInt("prfVibra",1); // Language
 
+
+        Configuration config = getResources().getConfiguration();
+        ScringWidthDP = config.smallestScreenWidthDp;
+
+//        if (config.smallestScreenWidthDp >= 600) {
+//            setContentView(R.layout.layout-w600dp);
+//        } else {
+//            setContentView(R.layout.main_activity);
+//        }
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new fragmentCreate()).commit();

@@ -96,6 +96,7 @@ public class Dialog_DataPicker extends DialogFragment implements View.OnClickLis
         tmpDate = "" + today.get(Calendar.DAY_OF_MONTH) + "." + TodaysMonth + "." + today.get(Calendar.YEAR);
 
         //TODO fix the value that is not supported.
+        //TODO not supported ! Fix it. TAKE CALENDAR FROM SHISHATIME
         mDatePicker.getCalendarView().setFirstDayOfWeek(Calendar.MONDAY);
 
         mDatePicker.init(

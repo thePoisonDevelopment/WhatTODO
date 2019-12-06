@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:background="#6ED80C" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="49dp"
+        android:background="#58B10C" />
+
+
+    <Button
+        android:id="@+id/cmpl_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/selector_button_back" />
+
+
+    <TextView
+        android:id="@+id/cmpl_caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/caption_completed"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4" />
+
+
+    <RelativeLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/cmpl_todoname_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginStart="0dp"
+            android:text="@string/todo_name_caption"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/cmpl_todoID_label"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="150dp"
+            android:gravity="end"
+            android:text="ID: 21324"
+            android:textColor="#8A8989"
+            android:textSize="12sp" />
+
+
+        <TextView
+            android:id="@+id/cmpl_taskDescription"
+            android:layout_width="300dp"
+            android:layout_height="220dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignStart="@+id/cmpl_todoname_label"
+            android:ems="10"
+            android:background="@drawable/inputtext_sendemail"
+            android:gravity="start" />
+
+
+        <TextView
+            android:id="@+id/cmpl_taskLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginTop="250dp"
+            android:layout_marginStart="10dp"
+            android:text="Label" />
+
+
+        <TextView
+            android:id="@+id/cmpl_created_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/cmpl_taskLabel"
+            android:layout_marginTop="270dp"
+            android:text="@string/created"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/cmpl_planned_on"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="290dp"
+            android:layout_alignStart="@+id/cmpl_taskLabel"
+            android:gravity="center"
+            android:text="Planned on: 10 DEC 2019"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/cmpl_deadline_lbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="310dp"
+            android:layout_alignStart="@+id/cmpl_taskLabel"
+            android:text="Deadline: 11 DEC 2019"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/cmpl_timespent_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="330dp"
+            android:layout_alignStart="@+id/cmpl_taskLabel"
+            android:text="@string/time_spent_mins"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/cmplt_prio"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="265dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/todo_prio_1" />
+
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

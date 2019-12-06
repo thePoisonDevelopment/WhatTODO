@@ -249,45 +249,7 @@ public class fragmentEdit extends Fragment implements
                 edit_btn_blocked.setBackgroundResource(R.drawable.todo_icon_2blocked_selected);
                 edit_bkgr.setBackgroundColor(Color.parseColor("#ff4e4e"));
                 break;
-            case 3:  //DONE
-                if (MainActivity.prf_Language == 1) {
-                    edit_status_text.setText(R.string.ru_tst_done);
-                    if (bdl_Completed == null) bdl_Completed = "Нет информации";
-                    edit_logtime_label.setText("Задача завершена: " + bdl_Completed);
-                }else {
 
-                    edit_status_text.setText(R.string.tst_done);
-                    if (bdl_Completed == null) bdl_Completed = "No data";
-                    edit_logtime_label.setText("Task is completed on: " + bdl_Completed);
-                }
-
-                edit_btn_done.setBackgroundResource(R.drawable.todo_icon_3done_selected);
-                edit_bkgr.setBackgroundColor(Color.parseColor("#4edc7d"));
-
-                edit_btn_todo.setVisibility(View.INVISIBLE);
-                edit_btn_wip.setVisibility(View.INVISIBLE);
-                edit_btn_blocked.setVisibility(View.INVISIBLE);
-                edit_btn_planned.setVisibility(View.INVISIBLE);
-                edit_btn_onhold.setVisibility(View.INVISIBLE);
-                edit_btn_reject.setVisibility(View.INVISIBLE);
-                edit_logtime.setVisibility(View.INVISIBLE);
-                edit_stopwatch_btn.setVisibility(View.INVISIBLE);
-                edit_stopwatch_values.setVisibility(View.INVISIBLE);
-                edit_btn_update.setVisibility(View.INVISIBLE);
-                edit_taskname.setEnabled(false);
-                edit_label_input.setEnabled(false);
-                edit_btn_done.setVisibility(View.INVISIBLE);
-                edit_btn_delete.setVisibility(View.INVISIBLE);
-                btn_edit_label_color.setEnabled(false);
-                edit_prio.setEnabled(false);
-                buttons_area.setVisibility(View.INVISIBLE);
-                edit_status_text.setVisibility(View.INVISIBLE);
-
-                e_planned_viewbtn.setVisibility(View.INVISIBLE);
-                e_deadline_viewbtn.setVisibility(View.INVISIBLE);
-
-
-                break;
             case 4:   //PLANNED
                 if (MainActivity.prf_Language == 1) edit_status_text.setText(R.string.ru_tst_planned);else edit_status_text.setText(R.string.tst_planned);
                 edit_btn_planned.setBackgroundResource(R.drawable.todo_icon_4planned_selected);

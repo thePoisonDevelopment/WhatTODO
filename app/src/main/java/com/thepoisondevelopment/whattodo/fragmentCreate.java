@@ -3,6 +3,7 @@ package com.thepoisondevelopment.whattodo;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
@@ -18,6 +19,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Objects;
 
 import java.util.Calendar;
 
@@ -85,6 +88,10 @@ public class fragmentCreate  extends Fragment implements Dialog_DataPicker.OnInp
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final View view = inflater.inflate(R.layout.fragment_create, container, false);
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            Objects.requireNonNull(getActivity()).getWindow().setStatusBarColor(Color.parseColor("#335A9C"));
+        }
 
         MainActivity.prm_Planned = "Not set";
         MainActivity.prm_Deadline = "Not set";
