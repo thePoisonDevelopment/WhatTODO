@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tool="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:background="#ffffff">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:background="#CA1419" />
+
+        <View
+            android:id="@+id/cleardata_background_sub"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="40dp"
+            android:background="#1D7BC7" />
+
+        <TextView
+            android:id="@+id/caption_cleardata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/caption_clear_all_data"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4"
+
+            />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:background="#f0f0f0" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="40dp"
+            android:background="#d9d9d9" />
+
+        <TextView
+            android:id="@+id/clear_data_text"
+            android:layout_width="300dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="50dp"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/text_delete_data"
+            android:textSize="16sp"
+            android:textColor="#000000" />
+
+
+        <TextView
+            android:id="@+id/button_deletealldata_cancel"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/button_cancel"
+            android:textColor="#1382b8"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/button_deletealldata_delete"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:text="@string/button_delete"
+            android:textColor="#ff3a33"
+            android:textSize="18sp" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

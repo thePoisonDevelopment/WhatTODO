@@ -1,0 +1,202 @@
+<resources>
+    <string name="app_name">WhatTODO</string>
+
+    <string name="navbar_create">Create</string>
+    <string name="navbar_todo">TODO</string>
+    <string name="navbar_log">Log</string>
+    <string name="navbar_settings">Settings</string>
+    <string name="f_create_caption">CREATE TASK</string>
+    <string name="f_todo_caption">TODO</string>
+    <string name="f_log_caption">LOG</string>
+    <string name="f_settings_caption">SETTINGS</string>
+    <string name="f_edit_view_caption">EDIT / VIEW</string>
+
+    <string name="text_delete_data">Are you sure that you want to delete all data?</string>
+    <string name="text_clear_database">This action will delete all tasks that are in COMPLETED and REJECTED statuses.</string>
+    <string name="ru_text_clear_database">Это действие удалит все задачи которые завершены и отклонены.\n\nВыполнить операцию ?</string>
+    <string name="button_cancel">CANCEL</string>
+    <string name="button_delete">DELETE</string>
+    <string name="button_clear">CLEAR</string>
+    <string name="ru_button_clear">ПОЧИСТИТЬ</string>
+    <string name="button_save">SAVE</string>
+    <string name="str_settings_records">RECORDS</string>
+    <string name="alldatadeleted">ALL DATA IS DELETED</string>
+    <string name="database_cleared">DATABASE CLEARED</string>
+    <string name="ru_database_cleared">БАЗА ДАННЫХ почищена</string>
+    <string name="caption_clear_database">CLEAR DATABASE</string>
+    <string name="caption_clear_all_data">CLEAR ALL DATA</string>
+    <string name="ru_caption_clear_database">ПОЧИСТИТЬ БАЗУ ДАННЫХ</string>
+
+    <string name="caption_edit">EDIT</string>
+    <string name="created_xx_xx_xxxx">Created: XX.XX.XXXX</string>
+
+    <string name="st_todo">TODO</string>
+    <string name="st_wip">WIP</string>
+    <string name="st_blocked">BLOCKED</string>
+    <string name="st_done">DONE</string>
+    <string name="st_planned">PLANNED</string>
+    <string name="st_on_hold">ON HOLD</string>
+    <string name="st_reject">REJECT</string>
+
+    <string name="btn_delete">DELETE</string>
+    <string name="btn_update">UPDATE</string>
+
+    <string name="tst_todo">Task status: TODO</string>
+    <string name="tst_wip">Task status: WIP</string>
+    <string name="tst_blocked">Task status: BLOCKED</string>
+    <string name="tst_done">Task status: DONE</string>
+    <string name="tst_planned">Task status: PLANNED</string>
+    <string name="tst_on_hold">Task status: ON HOLD</string>
+    <string name="tst_reject">Task status: REJECT</string>
+    <string name="tst_delete">DELETE</string>
+
+    <string name="ru_tst_todo">Статус: СДЕЛАТЬ</string>
+    <string name="ru_tst_wip">Статус: В ПРОЦЕССЕ</string>
+    <string name="ru_tst_blocked">Статус: БЛОКИРОВАНО</string>
+    <string name="ru_tst_done">Статус: СДЕЛАНО</string>
+    <string name="ru_tst_planned">Статус: ЗАПЛАНИРОВАТЬ</string>
+    <string name="ru_tst_on_hold">Статус: В БЭКЛОГ</string>
+    <string name="ru_tst_reject">Статус: ОТКЛОНИТЬ</string>
+    <string name="ru_tst_delete">УДАЛИТЬ</string>
+
+    <string name="app_title_name">WHAT TODO</string>
+    <string name="priority">Priority</string>
+    <string name="todo_name_caption">TODO name:</string>
+    <string name="todo_name">TODO name</string>
+    <string name="description">Description</string>
+    <string name="description_caption">Description:</string>
+
+    <string name="created">Created</string>
+    <string name="planned">Planned</string>
+    <string name="deadline">Deadline</string>
+    <string name="time_logged">Time logged</string>
+
+    <string name="planned_date">PLANNED DATE:</string>
+    <string name="deadline_date">DEADLINE DATE:</string>
+    <string name="ru_planned_date">ПЛАН НА:</string>
+    <string name="ru_deadline_date">ВЫПОЛНИТЬ ДО:</string>
+
+
+    <string name="ru_Money_BilledThisMonth">Будет учтено в следующем месяце</string>
+    <string name="ru_text_delete_data">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Вы действительно хотите всё удалить? \n\nДанные возврату не подлежат.</string>
+    <string name="ru_button_cancel">ОТМЕНА</string>
+    <string name="ru_button_delete">УДАЛИТЬ</string>
+    <string name="ru_button_save">СОХРАНИТЬ</string>
+    <string name="ru_alldatadeleted">ВСЕ ДАННЫЕ УДАЛЕНЫ</string>
+    <string name="ru_caption_clear_all_data">УДАЛИТЬ ВСЕ ЗАПИСИ</string>
+
+    <string name="data">DATA</string>
+    <string name="create">Create</string>
+    <string name="todos">TODOs</string>
+    <string name="settings">Settings</string>
+    <string name="btn_create">CREATE</string>
+    <string name="application">APPLICATION</string>
+    <string name="clear_all_data">DELETE ALL DATA</string>
+    <string name="clear_database">CLEAR DATABASE</string>
+    <string name="ru_clear_database">ПОЧИСТИТЬ БАЗУ</string>
+    <string name="language">Language:</string>
+    <string name="general">GENERAL</string>
+    <string name="rate_the_app">RATE THE APP</string>
+    <string name="more_apps">MORE APPS</string>
+    <string name="send_feedback">SEND FEEDBACK</string>
+
+    <string name="full">Full</string>
+    <string name="compact">Compact</string>
+    <string name="view_on_todos_screen">View on TODOs screen:</string>
+    <string name="feature_coming_soon">Feature is coming soon</string>
+    <string name="ru_feature_coming_soon">Функционал в разработке</string>
+
+    <string name="export">Export:</string>
+    <string name="csv">CSV</string>
+    <string name="pdf">PDF</string>
+    <string name="time_spent_mins">Time spent: XXX m</string>
+    <string name="no_tasks_found">No tasks found</string>
+
+    <string name="not_set">NOT SET</string>
+    <string name="ru_not_set">НЕ ЗАДАН</string>
+
+    <string name="ru_create">Создать</string>
+    <string name="ru_todos">Задачи</string>
+    <string name="ru_settings">Нас-ки</string>
+    <string name="ru_btn_create">СОЗДАТЬ</string>
+    <string name="ru_application">ПРИЛОЖЕНИЕ</string>
+    <string name="ru_clear_all_data">УДАЛИТЬ ДАТУ</string>
+    <string name="ru_language">Язык:</string>
+    <string name="ru_general">ОСНОВНЫЕ</string>
+    <string name="ru_rate_the_app">ОЦЕНИТЬ</string>
+    <string name="ru_more_apps">БОЛЬШЕ ПРИЛОЖЕНИЙ</string>
+    <string name="ru_send_feedback">ОТПРАВИТЬ ФИДБЭК</string>
+    <string name="ru_priority">Приоритет</string>
+
+    <string name="ru_app_title_name">WHAT TODO</string>
+    <string name="ru_todo_name_caption">Задача:</string>
+    <string name="ru_todo_name">Задача</string>
+    <string name="ru_description">Описание</string>
+    <string name="ru_description_caption">Описание:</string>
+    <string name="ru_data">ДАННЫЕ</string>
+    <string name="ru_caption_edit">РЕДАКТИРОВАТЬ</string>
+
+    <string name="ru_btn_delete">УДАЛИТЬ</string>
+    <string name="ru_btn_update">ОБНОВИТЬ</string>
+
+    <string name="ru_full">Полный</string>
+    <string name="ru_compact">Компактный</string>
+    <string name="ru_view_on_todos_screen">Вид на экране Задачи:</string>
+    <string name="ru_export">Экспорт:</string>
+    <string name="email">email</string>
+    <string name="log_time">Log Time (m):</string>
+    <string name="ru_log_time">Время:</string>
+    <string name="mins">mins</string>
+    <string name="ru_mins">мин</string>
+
+    <string name="ru_time_spent_mins">Потрачено (мин):</string>
+
+    <string name="ru_no_tasks_found">Задач не найдено</string>
+    <string name="pick">PICK</string>
+    <string name="ru_pick">ВЫБРАТЬ</string>
+    <string name="calendar">Calendar</string>
+    <string name="ru_calendar">Календ</string>
+    <string name="btn_export">EXPORT</string>
+    <string name="ru_btn_export">ЭКСПОРТ</string>
+    <string name="export_to_csv">Export to: CSV</string>
+    <string name="fields_to_export">Fields to export:</string>
+    <string name="ru_fields_to_export">Экспортировать поля:</string>
+
+    <string name="status">Status</string>
+    <string name="ru_status">Статус</string>
+    <string name="ru_created">Создан</string>
+    <string name="ru_planned">План</string>
+    <string name="ru_deadline">Срок</string>
+    <string name="ru_time_logged">Время</string>
+    <string name="send_via_email_as_a_file">Send via email as a file</string>
+    <string name="save_file_locally">Save file locally</string>
+    <string name="label">Label:</string>
+    <string name="label_">Label</string>
+    <string name="ru_label">Лейбл</string>
+    <string name="ru_label_">Лейбл:</string>
+    <string name="planned_on_">Planned on:</string>
+    <string name="deadline_">Deadline:</string>
+    <string name="ru_deadline_">Срок:</string>
+    <string name="ru_planned_on_">План:</string>
+    <string name="label_color">LABEL COLOR</string>
+    <string name="ru_label_color">ЦВЕТ ЛЕЙБЛА</string>
+    <string name="export_statuses">Export statuses:</string>
+    <string name="ru_export_statuses">Экспортировать статусы:</string>
+    <string name="use_vibration_feedback">Use vibration feedback</string>
+    <string name="ru_use_vibration_feedback">Использовать вибро отзыв</string>
+    <string name="set_export_time_period">Set export time period</string>
+    <string name="export_all_records">Export all records</string>
+    <string name="export_current_month">Export current month</string>
+    <string name="export_specific_month">Export specific month:</string>
+    <string name="optimization_of_pdf_file">Optimization of PDF file</string>
+
+    <string name="ru_set_export_time_period">ЭКСПОРТ</string>
+    <string name="ru_export_all_records">Экспортировать все данные</string>
+    <string name="ru_export_current_month">Текуший месяц</string>
+    <string name="ru_export_specific_month">Выбрать месяц:</string>
+    <string name="ru_optimization_of_pdf_file">Оптимизация PDF</string>
+    <string name="additional">Additional:</string>
+    <string name="ru_additional">Дополнительно:</string>
+
+
+</resources>

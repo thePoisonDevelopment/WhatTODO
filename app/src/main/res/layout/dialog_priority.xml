@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="130dp"
+        android:background="#ffffff">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:background="#3a67b3" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="40dp"
+            android:background="#1D7BC7" />
+
+        <TextView
+            android:id="@+id/caption_datapicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:layout_centerHorizontal="true"
+            android:text="CHANGE PRIORITY"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4"/>
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+
+
+        <Button
+            android:id="@+id/btn_ePrio1"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/todo_prio_1" />
+
+        <Button
+            android:id="@+id/btn_ePrio2"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="50dp"
+            android:layout_alignTop="@+id/btn_ePrio1"
+            android:background="@drawable/todo_prio_2" />
+
+        <Button
+            android:id="@+id/btn_ePrio3"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="100dp"
+            android:layout_alignTop="@+id/btn_ePrio1"
+            android:background="@drawable/todo_prio_3" />
+
+        <Button
+            android:id="@+id/btn_ePrio4"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="150dp"
+            android:layout_alignTop="@+id/btn_ePrio1"
+            android:background="@drawable/todo_prio_4" />
+
+        <Button
+            android:id="@+id/btn_ePrio5"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="200dp"
+            android:layout_alignTop="@+id/btn_ePrio1"
+            android:background="@drawable/todo_prio_5" />
+    </RelativeLayout>
+
+
+
+
+
+
+
+</RelativeLayout>

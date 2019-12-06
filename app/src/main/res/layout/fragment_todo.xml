@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="81dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:background="#3a67b3" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="82dp"
+        android:background="#234379" />
+
+
+    <RelativeLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/nav2_top_1create"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/nav_top_1create_selected" />
+
+        <TextView
+            android:id="@+id/nav2_top_1create_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/nav2_top_1create"
+            android:layout_marginTop="62dp"
+            android:text="@string/create"
+            android:textSize="14sp"
+            android:textColor="#011069"   />
+
+        <Button
+            android:id="@+id/nav2_top_2todolist"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="90dp"
+            android:layout_alignTop="@+id/nav2_top_1create"
+            android:background="@drawable/nav_top_2todolist" />
+
+        <TextView
+            android:id="@+id/nav2_top_2todolist_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/nav2_top_1create_text"
+            android:layout_alignStart="@+id/nav2_top_2todolist"
+            android:text="@string/todos"
+            android:textSize="14sp"
+            android:textColor="#ffffff"  />
+
+
+        <Button
+            android:id="@+id/nav2_top_3calendar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="180dp"
+            android:layout_alignTop="@+id/nav2_top_1create"
+            android:background="@drawable/nav_top_3calendar_selected" />
+
+        <TextView
+            android:id="@+id/nav2_top_3calendar_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/nav2_top_1create_text"
+            android:layout_marginStart="175dp"
+            android:text="@string/calendar"
+            android:textSize="14sp"
+            android:textColor="#011069"  />
+
+
+
+
+
+        <Button
+            android:id="@+id/nav2_top_4settings"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="270dp"
+            android:layout_alignTop="@+id/nav2_top_1create"
+            android:background="@drawable/nav_top_4settings_selected" />
+
+        <TextView
+            android:id="@+id/nav2_top_4settings_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/nav2_top_1create_text"
+            android:layout_alignStart="@+id/nav2_top_4settings"
+            android:text="@string/settings"
+            android:textSize="14sp"
+            android:textColor="#011069" />
+
+
+
+        <TextView
+            android:id="@+id/f_create_caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/app_title_name"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4" />
+
+    </RelativeLayout>
+
+
+    <ListView
+        android:id="@+id/listview_records"
+        android:layout_marginTop="145dp"
+        android:layout_width="match_parent"
+        android:background="#000000"
+        android:layout_height="465dp">
+    </ListView>
+
+
+    <TextView
+        android:id="@+id/filter_nothingfound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="170dp"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="#FF1212"
+        android:text="@string/no_tasks_found" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="84dp"
+        android:background="#fefefe" />
+
+    <RelativeLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/filter_priority"
+            android:layout_width="38dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/filter_priority_normal" />
+
+
+        <Button
+            android:id="@+id/filter_todo"
+            android:layout_width="38dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/filter_todo" />
+
+        <Button
+            android:id="@+id/filter_planned"
+            android:layout_width="38dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="120dp"
+            android:layout_alignTop="@+id/filter_todo"
+            android:background="@drawable/filter_planned" />
+
+        <Button
+            android:id="@+id/filter_wip"
+            android:layout_width="38dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="170dp"
+            android:layout_alignTop="@+id/filter_todo"
+            android:background="@drawable/filter_wip" />
+
+        <Button
+            android:id="@+id/filter_outoflist"
+            android:layout_width="38dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="240dp"
+            android:layout_alignTop="@+id/filter_priority"
+            android:background="@drawable/filter_outoflist" />
+
+        <TextView
+            android:id="@+id/filter_todo_number"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/filter_todo"
+            android:layout_marginTop="45dp"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:text="@string/full" />
+
+
+        <TextView
+            android:id="@+id/filter_planned_number"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/filter_planned"
+            android:layout_alignTop="@+id/filter_todo_number"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:text="@string/full" />
+
+
+        <TextView
+            android:id="@+id/filter_wip_number"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/filter_wip"
+            android:layout_alignTop="@+id/filter_todo_number"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:text="@string/full" />
+
+
+        <Button
+            android:id="@+id/btn_pdfexport_todos"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="300dp"
+            android:layout_alignTop="@+id/filter_priority"
+            android:background="@drawable/selector_button_pdf" />
+
+
+    </RelativeLayout>
+
+        <!--   LIST VIEW  -->
+
+
+
+</RelativeLayout>

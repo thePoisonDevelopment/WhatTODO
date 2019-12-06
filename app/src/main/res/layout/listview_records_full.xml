@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000" >
+
+
+    <View
+        android:id="@+id/lw_record_highlight_back"
+        android:layout_width="match_parent"
+        android:layout_height="77dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="1dp"
+        android:background="#fefefe" />
+
+
+    <View
+        android:id="@+id/lw_record_highlight_main1"
+        android:layout_width="5dp"
+        android:layout_height="77dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="1dp"
+        android:background="#fefefe" />
+
+    <View
+        android:id="@+id/lw_record_highlight_main2"
+        android:layout_width="5dp"
+        android:layout_height="77dp"
+        android:layout_marginEnd="0dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="1dp"
+        android:background="#fefefe" />
+
+
+        <TextView
+            android:id="@+id/lw_todoname"
+            android:layout_width="250dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="2dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:text="TASK 1 NAME NAME NAME NAME NAME NA dsfg sdgsdfg dsfg dsfg dsfg dsfg dsfg  dsfg dsfgsdf " />
+
+
+
+        <ImageView
+            android:id="@+id/lw_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/todo_icon_0todo" />
+
+
+
+        <ImageView
+            android:id="@+id/lw_prio"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/todo_prio_1" />
+
+
+    <View
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp"
+        android:background="#a0a0a0" />
+
+
+    <TextView
+        android:id="@+id/lw_timeplanned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:layout_marginStart="205dp"
+        android:gravity="left"
+        android:textStyle="italic"
+        android:textColor="#666666"
+        android:text="Planned: 88:88, 14.04.2019"
+        android:textSize="10sp"
+        tools:ignore="RtlHardcoded,SmallSp" />
+
+    <TextView
+        android:id="@+id/lw_timedeadline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/lw_timeplanned"
+        android:layout_marginTop="65dp"
+        android:gravity="left"
+        android:textStyle="italic"
+        android:textColor="#666666"
+        android:text="Deadline: 88:88, 14.05.2019"
+        android:textSize="10sp"
+        tools:ignore="RtlHardcoded,SmallSp" />
+
+
+    <TextView
+        android:id="@+id/lw_full_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="20dp"
+        android:gravity="left"
+        android:textStyle="italic"
+        android:textColor="#000000"
+        android:text="WWWWWWWWWWWWWWW"
+        android:textSize="10sp"
+        tools:ignore="RtlHardcoded,SmallSp" />
+
+
+    <TextView
+        android:id="@+id/lw_full_timelogged"
+        android:layout_width="40dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="65dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:gravity="center"
+        android:textStyle="italic"
+        android:textColor="#666666"
+        android:textSize="10sp"
+        tools:ignore="RtlHardcoded,SmallSp" />
+
+    <TextView
+        android:id="@+id/lw_compact_timelogged"
+        android:layout_width="100dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginStart="205dp"
+        android:gravity="left"
+        android:textStyle="italic"
+        android:textColor="#000000"
+        android:text=""
+        android:textSize="10sp"
+        tools:ignore="RtlHardcoded,SmallSp" />
+
+
+</RelativeLayout>

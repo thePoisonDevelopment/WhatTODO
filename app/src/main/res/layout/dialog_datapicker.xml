@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tool="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="#ffffff">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:background="#3a67b3" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="40dp"
+            android:background="#1D7BC7" />
+
+        <TextView
+            android:id="@+id/caption_datapicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:layout_centerHorizontal="true"
+            android:text="PLANNED DATE"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4"/>
+
+
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:spinnersShown="false"
+            android:calendarViewShown="true"
+            android:layout_marginTop="48dp"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:background="#f0f0f0" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="40dp"
+            android:background="#d9d9d9" />
+
+
+        <TextView
+            android:id="@+id/button_cancel"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/button_cancel"
+            android:textColor="#ff3a33"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/button_na"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/not_set"
+            android:textColor="#084563"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/button_choose"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:text="@string/pick"
+            android:textColor="#1382b8"
+            android:textSize="18sp" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

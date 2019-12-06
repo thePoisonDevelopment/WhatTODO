@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"    >
+
+
+    <View
+        android:id="@+id/lw_record_highlight_back"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="2dp"
+        android:background="#fefefe" />
+
+
+    <View
+        android:id="@+id/lw_record_highlight_main1"
+        android:layout_width="5dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="2dp"
+        android:background="#fefefe" />
+
+    <View
+        android:id="@+id/lw_record_highlight_main2"
+        android:layout_width="5dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="0dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="2dp"
+        android:background="#fefefe" />
+
+
+        <TextView
+            android:id="@+id/lw_todoname"
+            android:layout_width="220dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginStart="80dp"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:text="TASK 1 NAME NAME NAMEsdgsdfg dsfg dsfg dsfg dsfg dsfg  dsfg dsfgsdf " />
+
+
+        <ImageView
+            android:id="@+id/lw_prio"
+            android:layout_width="20dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/todo_prio_1" />
+
+        <ImageView
+            android:id="@+id/lw_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/todo_icon_0todo" />
+
+
+
+
+    <TextView
+        android:id="@+id/lw_timeplanned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:gravity="left"
+        android:textStyle="italic"
+        android:textColor="#666666"
+        android:text=""
+        android:textSize="10sp"
+        tools:ignore="RtlHardcoded,SmallSp" />
+
+    <TextView
+        android:id="@+id/lw_timedeadline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="190dp"
+        android:layout_marginTop="0dp"
+        android:gravity="left"
+        android:textStyle="italic"
+        android:textColor="#666666"
+        android:text=""
+        android:textSize="10sp"
+        tools:ignore="RtlHardcoded,SmallSp" />
+
+
+
+
+    <TextView
+        android:id="@+id/lw_full_timelogged"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:gravity="left"
+        android:textStyle="italic"
+        android:textColor="#000000"
+        android:text=""
+        android:textSize="10sp"
+        tools:ignore="RtlHardcoded,SmallSp" />
+
+
+    <TextView
+        android:id="@+id/lw_compact_timelogged"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentEnd="true"
+        android:gravity="right"
+        android:textStyle="italic"
+        android:textColor="#000000"
+        android:textSize="10sp"
+        tools:ignore="RtlHardcoded,SmallSp" />
+
+
+    <TextView
+        android:id="@+id/lw_full_label"
+        android:layout_width="150dp"
+        android:layout_height="14dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="20dp"
+        android:gravity="left"
+        android:textStyle="italic"
+        android:textColor="#000000"
+        android:text=""
+        android:textSize="10sp"
+        tools:ignore="RtlHardcoded,SmallSp" />
+
+
+</RelativeLayout>

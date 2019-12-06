@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <View
+        android:id="@+id/edit_bkgr"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:background="#3a67b3" />
+
+    <View
+        android:id="@+id/edit_bkgr_sub"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="49dp"
+        android:background="#1D7BC7" />
+
+
+    <Button
+        android:id="@+id/edit_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/selector_button_back" />
+
+
+    <TextView
+        android:id="@+id/edit_caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/caption_edit"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4" />
+
+
+    <RelativeLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/edit_todoname_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginStart="0dp"
+            android:text="@string/todo_name_caption"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/edit_todoid_label"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="150dp"
+            android:gravity="right"
+            android:text="ID: 21324"
+            android:textColor="#8A8989"
+            android:textSize="12sp" />
+
+
+        <EditText
+            android:id="@+id/edit_taskname"
+            android:layout_width="300dp"
+            android:layout_height="110dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignStart="@+id/edit_todoname_label"
+            android:ems="10"
+            android:background="@drawable/inputtext_sendemail"
+            android:inputType="textMultiLine"
+            android:gravity="start"
+            android:maxLength="256"
+            android:hint="@string/todo_name" />
+
+
+        <TextView
+            android:id="@+id/edit_created_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="130dp"
+            android:text="@string/created"
+            android:gravity="end"
+            android:textColor="#888888"
+            android:textSize="12sp" />
+
+
+        <EditText
+            android:id="@+id/edit_label_input"
+            android:layout_width="250dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="150dp"
+            android:layout_alignStart="@+id/edit_todoname_label"
+            android:ems="10"
+            android:background="@drawable/inputtext_sendemail"
+            android:maxLength="12"
+            android:gravity="start"
+            android:scrollbars="vertical"
+            android:hint="Label" />
+
+
+        <View
+            android:id="@+id/btn_edit_label_color"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignTop="@+id/edit_label_input"
+            android:layout_marginStart="270dp"
+            android:background="#BFE5FF"
+            />
+
+
+        <View
+            android:id="@+id/e_planned_viewbtn"
+            android:layout_width="105dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="185dp"
+            android:background="#BFE5FF" />
+
+        <TextView
+            android:id="@+id/e_planned_lbl"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/e_planned_viewbtn"
+            android:layout_marginStart="0dp"
+            android:gravity="center"
+            android:text="Planned on:"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/e_planned_txt"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="203dp"
+            android:layout_alignStart="@+id/e_planned_lbl"
+            android:text="XX.XX.XXXX"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+
+        <View
+            android:id="@+id/e_deadline_viewbtn"
+            android:layout_width="105dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="195dp"
+            android:layout_alignTop="@+id/e_planned_viewbtn"
+            android:background="#BFE5FF" />
+
+        <TextView
+            android:id="@+id/e_deadline_lbl"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/e_planned_lbl"
+            android:layout_marginStart="195dp"
+            android:gravity="center"
+            android:text="Deadline:"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/e_deadline_txt"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/e_planned_txt"
+            android:layout_alignStart="@+id/e_deadline_lbl"
+            android:text="XX.XX.XXXX"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/edit_prio"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/e_planned_viewbtn"
+            android:background="@drawable/todo_prio_1" />
+
+
+        <View
+            android:layout_width="250dp"
+            android:layout_height="1dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="230dp"
+            android:background="#BBBBBB" />
+
+
+        <TextView
+            android:id="@+id/edit_logtime_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="253dp"
+            android:text="@string/log_time"
+            android:gravity="end"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+
+
+        <EditText
+            android:id="@+id/edit_logtime"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="252dp"
+            android:layout_marginStart="85dp"
+            android:ems="10"
+            android:background="@drawable/inputtext_sendemail"
+            android:inputType="numberDecimal"
+            android:maxLength="3"/>
+
+        <TextView
+            android:id="@+id/edit_timespent_label"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="119dp"
+            android:layout_alignTop="@+id/edit_created_label"
+            android:text="@string/time_spent_mins"
+            android:gravity="end"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+
+
+        <Button
+            android:id="@+id/edit_stopwatch_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="234dp"
+            android:layout_marginStart="160dp"
+            android:background="@drawable/stopwatch" />
+
+        <Chronometer
+            android:id="@+id/edit_stopwatch_values"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="220dp"
+            android:layout_marginTop="249dp"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="345dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/buttons_area"
+            android:layout_width="300dp"
+            android:layout_height="145dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp"
+            android:background="#efefef" />
+
+        <Button
+            android:id="@+id/edit_btn_todo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/todo_icon_0todo" />
+
+
+        <Button
+            android:id="@+id/edit_btn_planned"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@+id/edit_btn_todo"
+            android:layout_marginStart="80dp"
+            android:background="@drawable/todo_icon_4planned" />
+
+        <Button
+            android:id="@+id/edit_btn_wip"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@+id/edit_btn_todo"
+            android:layout_marginStart="150dp"
+            android:background="@drawable/todo_icon_1wip" />
+
+        <Button
+            android:id="@+id/edit_btn_done"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@+id/edit_btn_todo"
+            android:layout_marginStart="240dp"
+            android:background="@drawable/todo_icon_3done"/>
+
+
+        <Button
+            android:id="@+id/edit_btn_blocked"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="65dp"
+            android:layout_alignStart="@+id/edit_btn_todo"
+            android:background="@drawable/todo_icon_2blocked" />
+
+        <Button
+            android:id="@+id/edit_btn_onhold"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@+id/edit_btn_blocked"
+            android:layout_alignStart="@+id/edit_btn_planned"
+            android:background="@drawable/todo_icon_5onhold" />
+
+        <Button
+            android:id="@+id/edit_btn_reject"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@+id/edit_btn_blocked"
+            android:layout_alignStart="@+id/edit_btn_wip"
+            android:background="@drawable/todo_icon_6rejected" />
+
+
+        <Button
+            android:id="@+id/edit_btn_delete"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@+id/edit_btn_blocked"
+            android:layout_alignStart="@+id/edit_btn_done"
+            android:textColor="#ff0000"
+            android:background="@drawable/todo_icon_7delete" />
+
+
+        <TextView
+            android:id="@+id/edit_status_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="120dp"
+            android:textColor="#000000"
+            android:text="@string/tst_todo"
+            android:textSize="16sp"   />
+
+
+        <View
+            android:layout_width="250dp"
+            android:layout_height="1dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="155dp"
+            android:background="#BBBBBB" />
+
+
+        <Button
+            android:id="@+id/edit_btn_update"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="170dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/selector_button_update" />
+
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        android:background="#ffffff">
+
+        <View
+            android:id="@+id/savecsv_background"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:background="#3a67b3" />
+
+        <View
+            android:id="@+id/savecsv_background_sub"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="40dp"
+            android:background="#1D7BC7" />
+
+        <TextView
+            android:id="@+id/caption_savecsv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/set_export_time_period"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4"/>
+
+        <RelativeLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/radio_allrecords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/export_all_records" />
+
+            <ImageView
+                android:id="@+id/checkbox_allrecords"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="0dp"
+                android:layout_alignTop="@+id/radio_allrecords"
+                android:background="@drawable/radio2_false" />
+
+
+            <TextView
+                android:id="@+id/radio_currentmonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/export_current_month"   />
+
+            <ImageView
+                android:id="@+id/checkbox_currentmonth"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="0dp"
+                android:layout_alignTop="@+id/radio_currentmonth"
+                android:background="@drawable/radio2_false" />
+
+
+            <TextView
+                android:id="@+id/radio_exportspecific"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:layout_marginStart="30dp"
+                android:text="@string/export_specific_month"   />
+
+            <ImageView
+                android:id="@+id/checkbox_exportspecific"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="0dp"
+                android:layout_alignTop="@+id/radio_exportspecific"
+                android:background="@drawable/radio2_false" />
+
+            <Spinner
+                android:id="@+id/spinner_month"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="100dp"
+                android:spinnerMode="dropdown"
+                android:gravity="center_vertical"  />
+
+            <View
+                android:layout_width="80dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="140dp"
+                android:layout_marginStart="20dp"
+                android:background="#9E9E9E" />
+
+            <Spinner
+                android:id="@+id/spinner_year"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="100dp"
+                android:spinnerMode="dropdown"
+                android:gravity="center_vertical"  />
+
+
+
+            <View
+                android:layout_width="120dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="140dp"
+                android:layout_marginStart="120dp"
+                android:background="#9E9E9E" />
+
+
+
+            <ImageView
+                android:id="@+id/toggle_optimized"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="160dp"
+                android:background="@drawable/toggle_off" />
+
+            <TextView
+                android:id="@+id/label_optimized"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_alignTop="@+id/toggle_optimized"
+                android:text="@string/optimization_of_pdf_file"   />
+
+        </RelativeLayout>
+
+
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:background="#f0f0f0" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="40dp"
+            android:background="#d9d9d9" />
+
+
+        <TextView
+            android:id="@+id/button_cancel"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/button_cancel"
+            android:textColor="#ff3a33"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/button_set_timeframe"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:text="@string/btn_export"
+            android:textColor="#1382b8"
+            android:textSize="18sp" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

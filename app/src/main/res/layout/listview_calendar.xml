@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"    >
+
+
+    <View
+        android:id="@+id/lw_calendar_highlight_back"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="2dp"
+        android:background="#fefefe" />
+
+
+    <View
+        android:id="@+id/lw_calendar_highlight_main1"
+        android:layout_width="5dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="2dp"
+        android:background="#fefefe" />
+
+    <View
+        android:id="@+id/lw_calendar_highlight_main2"
+        android:layout_width="5dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="0dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="2dp"
+        android:background="#fefefe" />
+
+
+
+    <ImageView
+            android:id="@+id/lw_calendar_prio"
+            android:layout_width="20dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/todo_prio_1" />
+
+
+    <ImageView
+            android:id="@+id/lw_calendar_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/todo_icon_0todo" />
+
+    <TextView
+        android:id="@+id/lw_calendar_todoname"
+        android:layout_width="220dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="80dp"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:text="TASK 1 NAME NAME NAMEsdgsdfg dsfg dsfg dsfg dsfg dsfg  dsfg dsfgsdf " />
+
+    <View
+        android:id="@+id/lw_calendar_label_color"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginStart="320dp"
+        android:background="#BFE5FF" />
+
+</RelativeLayout>

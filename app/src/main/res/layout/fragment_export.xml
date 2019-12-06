@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:background="#3a67b3" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="49dp"
+        android:background="#1D7BC7" />
+
+
+    <Button
+        android:id="@+id/export_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/selector_button_back" />
+
+
+    <TextView
+        android:id="@+id/export_caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_centerHorizontal="true"
+        android:text="EXPORT"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="52dp" >
+
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/export_btn_CSV"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/export_csv_selected" />
+
+            <Button
+                android:id="@+id/export_btn_PDF"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignTop="@+id/export_btn_CSV"
+                android:background="@drawable/export_pdf" />
+
+            <Button
+                android:id="@+id/export_btn_MAIL"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="70dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/export_btn_CSV"
+                android:background="@drawable/export_email" />
+
+
+            <TextView
+                android:id="@+id/export_text_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_centerHorizontal="true"
+                android:text="@string/export_to_csv"
+                android:textSize="14sp"
+                android:textColor="#011069"   />
+
+            <View
+                android:layout_width="300dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="75dp"
+                android:background="#BBBBBB" />
+
+
+
+            <TextView
+                android:id="@+id/export_fields_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:text="@string/fields_to_export"
+                android:textSize="16sp"
+                android:textColor="#011069"   />
+
+            <CheckBox
+                android:id="@+id/chk_priority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="110dp"
+                android:button="@drawable/selector_checkbox"
+                android:paddingStart="10dp"
+                android:text="@string/priority"
+                android:checked="true"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/chk_taskdescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/chk_priority"
+                android:layout_marginTop="145dp"
+                android:button="@drawable/selector_checkbox"
+                android:paddingStart="10dp"
+                android:text="@string/description"
+                android:checked="true"
+                android:textSize="16sp" />
+
+
+            <CheckBox
+                android:id="@+id/chk_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/chk_priority"
+                android:layout_marginTop="180dp"
+                android:button="@drawable/selector_checkbox"
+                android:paddingStart="10dp"
+                android:text="@string/status"
+                android:checked="true"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/chk_timelogged"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/chk_priority"
+                android:layout_marginTop="215dp"
+                android:button="@drawable/selector_checkbox"
+                android:paddingStart="10dp"
+                android:text="@string/time_logged"
+                android:checked="true"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/chk_created"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="230dp"
+                android:layout_alignTop="@+id/chk_priority"
+                android:button="@drawable/selector_checkbox"
+                android:paddingStart="10dp"
+                android:text="@string/created"
+                android:checked="true"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/chk_planned"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/chk_created"
+                android:layout_alignTop="@+id/chk_taskdescription"
+                android:button="@drawable/selector_checkbox"
+                android:paddingStart="10dp"
+                android:text="@string/planned"
+                android:checked="true"
+                android:textSize="16sp" />
+
+
+            <CheckBox
+                android:id="@+id/chk_deadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/chk_created"
+                android:layout_alignTop="@+id/chk_status"
+                android:button="@drawable/selector_checkbox"
+                android:paddingStart="10dp"
+                android:text="@string/deadline"
+                android:checked="true"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/chk_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/chk_created"
+                android:layout_alignTop="@+id/chk_timelogged"
+                android:button="@drawable/selector_checkbox"
+                android:paddingStart="10dp"
+                android:text="@string/label"
+                android:checked="true"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="300dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="250dp"
+                android:background="#BBBBBB" />
+
+
+            <TextView
+                android:id="@+id/export_statuses_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="255dp"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:text="@string/export_statuses"
+                android:textSize="16sp"
+                android:textColor="#011069"   />
+
+
+            <Button
+                android:id="@+id/e_btn_blocked"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="290dp"
+                android:layout_marginStart="70dp"
+                android:background="@drawable/todo_icon_2blocked_selected" />
+
+
+            <Button
+                android:id="@+id/e_btn_wip"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignTop="@+id/e_btn_blocked"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/todo_icon_1wip_selected" />
+
+            <Button
+                android:id="@+id/e_btn_planned"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignTop="@+id/e_btn_blocked"
+                android:layout_marginEnd="70dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/todo_icon_4planned_selected" />
+
+            <Button
+                android:id="@+id/e_btn_todo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="350dp"
+                android:layout_alignStart="@+id/e_btn_blocked"
+                android:background="@drawable/todo_icon_0todo_selected" />
+
+            <Button
+                android:id="@+id/e_btn_onhold"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignTop="@+id/e_btn_todo"
+                android:layout_alignStart="@+id/e_btn_wip"
+                android:background="@drawable/todo_icon_5onhold_selected" />
+
+
+            <Button
+                android:id="@+id/e_btn_done"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignTop="@+id/e_btn_todo"
+                android:layout_alignStart="@+id/e_btn_planned"
+                android:background="@drawable/todo_icon_3done" />
+
+            <View
+                android:layout_width="300dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="400dp"
+                android:background="#BBBBBB" />
+
+
+            <TextView
+                android:id="@+id/export_additional_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="405dp"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:text="@string/additional"
+                android:textSize="16sp"
+                android:textColor="#011069"  />
+
+
+            <ImageView
+                android:id="@+id/exp_toggle_optimized"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="440dp"
+                android:background="@drawable/toggle_off" />
+
+            <TextView
+                android:id="@+id/exp_label_optimized"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:layout_alignTop="@+id/exp_toggle_optimized"
+                android:text="@string/optimization_of_pdf_file"   />
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+     <View
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="#f0f0f0" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="40dp"
+        android:background="#d9d9d9" />
+
+
+    <TextView
+        android:id="@+id/btn_export"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:text="@string/btn_export"
+        android:textColor="#1382b8"
+        android:textSize="18sp" />
+
+
+
+</RelativeLayout>
+
