@@ -89,14 +89,16 @@ public class Dialog_DataPicker extends DialogFragment implements View.OnClickLis
 
         Calendar today = Calendar.getInstance();
 
-        String TodaysMonth = "";
+        String TodaysMonth;
         int tmp_month = today.get(Calendar.MONTH) + 1;
         if (tmp_month < 10) TodaysMonth = "0" + tmp_month; else TodaysMonth = "" + tmp_month;
 
-        tmpDate = "" + today.get(Calendar.DAY_OF_MONTH) + "." + TodaysMonth + "." + today.get(Calendar.YEAR);
+        String TodayDay;
+        int tmp_day = today.get(Calendar.DAY_OF_MONTH);
+        if (tmp_day < 10) TodayDay = "0" + tmp_day; else TodayDay = "" + tmp_day;
 
-        //TODO fix the value that is not supported.
-        //TODO not supported ! Fix it. TAKE CALENDAR FROM SHISHATIME
+        tmpDate = "" + TodayDay + "." + TodaysMonth + "." + today.get(Calendar.YEAR);
+
         mDatePicker.getCalendarView().setFirstDayOfWeek(Calendar.MONDAY);
 
         mDatePicker.init(
@@ -110,11 +112,15 @@ public class Dialog_DataPicker extends DialogFragment implements View.OnClickLis
                     @Override
                     public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
-                        String TodaysMonth = "";
+                        String TodayDay;
+                        int tmp_day = dayOfMonth;
+                        if (dayOfMonth < 10) TodayDay = "0" + tmp_day; else TodayDay = "" + tmp_day;
+
+                        String TodaysMonth;
                         int tmp_month = monthOfYear + 1;
                         if (tmp_month <10) TodaysMonth = "0" + tmp_month; else TodaysMonth = "" + tmp_month;
 
-                        tmpDate = "" + dayOfMonth + "." + TodaysMonth + "." + year;
+                        tmpDate = "" + TodayDay + "." + TodaysMonth + "." + year;
 
 
                     }
@@ -152,7 +158,6 @@ public class Dialog_DataPicker extends DialogFragment implements View.OnClickLis
 
 
 
-        // OK CANCEL buttons
         button_choose.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -160,8 +165,13 @@ public class Dialog_DataPicker extends DialogFragment implements View.OnClickLis
                 String input = "";
 
                 switch (bld_PlannedDeadline) {
-                    case 0: input = prm_Planned = tmpDate;break;
-                    case 1: input = prm_Deadline = tmpDate;break;
+                    case 0: input = prm_Planned = tmpDate;
+                        Log.d(TAG, " ============ " + prm_Planned);
+
+                    break;
+                    case 1: input = prm_Deadline = tmpDate;
+                        Log.d(TAG, " ============ " + prm_Deadline);
+                    break;
                 }
 
                 mOnInputSelected.sendInput(input);

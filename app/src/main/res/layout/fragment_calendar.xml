@@ -154,20 +154,19 @@
             android:layout_height="40dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
-            android:background="@drawable/cal_showday" />
+            android:background="@drawable/cal_showmonth" />
 
 
         <TextView
-            android:id="@+id/cal_day_text"
+            android:id="@+id/cal_show_date"
             android:layout_width="37dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="1dp"
+            android:layout_marginTop="16dp"
             android:gravity="center"
             android:text="DAY"
-            android:textSize="14sp"
-            android:textColor="#011069"   />
-
+            android:textColor="#011069"
+            android:textSize="14sp" />
 
 
         <Button
@@ -177,7 +176,6 @@
             android:layout_marginStart="60dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/selector_button_back" />
-
 
         <TextView
             android:id="@+id/cal_date"
@@ -210,16 +208,6 @@
 
     </RelativeLayout>
 
-
-    <ListView
-        android:id="@+id/lw_calendar"
-        android:layout_marginTop="140dp"
-        android:layout_width="match_parent"
-        android:background="#000000"
-        android:layout_height="465dp">
-    </ListView>
-
-
     <TextView
         android:id="@+id/calendar_nothingfound"
         android:layout_width="wrap_content"
@@ -230,6 +218,23 @@
         android:textSize="16sp"
         android:textColor="#FF1212"
         android:text="@string/no_tasks_found" />
+
+    <sun.bob.mcalendarview.MCalendarView
+        android:id="@+id/custom_calendar"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="145dp"
+        android:background="#8F98A7"        />
+
+
+
+    <ListView
+        android:id="@+id/lw_calendar"
+        android:layout_marginTop="140dp"
+        android:layout_width="match_parent"
+        android:background="#000000"
+        android:layout_height="465dp">
+    </ListView>
 
 
 

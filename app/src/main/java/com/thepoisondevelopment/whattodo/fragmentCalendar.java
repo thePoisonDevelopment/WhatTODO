@@ -1,6 +1,5 @@
 package com.thepoisondevelopment.whattodo;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -17,7 +16,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -30,6 +28,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Objects;
+
+import sun.bob.mcalendarview.MCalendarView;
+import sun.bob.mcalendarview.MarkStyle;
+import sun.bob.mcalendarview.listeners.OnDateClickListener;
+import sun.bob.mcalendarview.vo.DateData;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.thepoisondevelopment.whattodo.MainActivity.FILE_NAME;
@@ -44,17 +47,16 @@ public class fragmentCalendar extends Fragment {
     TextView nav3_top_1create_text, nav3_top_2todolist_text, nav3_top_4settings_text, calendar_nothingfound;
 
     Button cal_left, cal_right, cal_exportPDF;
-    TextView cal_date;
-
-    ListView lw_calendar;
-
     Button btn_cal_timeframe;
-    TextView cal_day_text;
+    TextView cal_date, cal_show_date;
+
+    private MCalendarView custom_calendar;
+    ListView lw_calendar;
 
     Calendar TodaysDate = Calendar.getInstance();
 
-    String TodaysDate_MONTH;
-    int TodaysDate_Day, TodaysDate_MONTHtmp, TodaysDate_year;
+    String TodaysDate_MONTHstr, TodaysDate_DAYstr;
+    int TodaysDate_DAYint, TodaysDate_MONTHint, TodaysDate_year;
 
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -78,22 +80,32 @@ public class fragmentCalendar extends Fragment {
 
         cal_exportPDF = view.findViewById(R.id.cal_exportPDF);
 
+        custom_calendar = view.findViewById(R.id.custom_calendar);
         lw_calendar = view.findViewById(R.id.lw_calendar);
         calendar_nothingfound = view.findViewById(R.id.calendar_nothingfound);
         calendar_nothingfound.setVisibility(View.INVISIBLE);
 
-        if (MainActivity.ListView_DAY != 0)  TodaysDate_Day = MainActivity.ListView_DAY;else
-            TodaysDate_Day = TodaysDate.get(Calendar.DAY_OF_MONTH);
-        if (MainActivity.ListView_MONTH != 0)  TodaysDate_MONTHtmp = MainActivity.ListView_MONTH;else
-            TodaysDate_MONTHtmp = TodaysDate.get(Calendar.MONTH) + 1;
+        MainActivity.ListView_MODE = 2; // I set this value to show calendar from the start
 
-        if (TodaysDate_MONTHtmp < 10) TodaysDate_MONTH = "0" + TodaysDate_MONTHtmp; else TodaysDate_MONTH = "" + TodaysDate_MONTHtmp;
+        // Here I get today's day in a format DD.MM.YYYY
+        TodaysDate_DAYint = TodaysDate.get(Calendar.DAY_OF_MONTH);
+        if (TodaysDate_DAYint < 10) TodaysDate_DAYstr = "0" + TodaysDate_DAYint; else TodaysDate_DAYstr = "" + TodaysDate_DAYint;
+        TodaysDate_MONTHint = TodaysDate.get(Calendar.MONTH) + 1;
+        if (TodaysDate_MONTHint < 10) TodaysDate_MONTHstr = "0" + TodaysDate_MONTHint; else TodaysDate_MONTHstr = "" + TodaysDate_MONTHint;
         TodaysDate_year = TodaysDate.get(Calendar.YEAR);
 
         btn_cal_timeframe = view.findViewById(R.id.btn_cal_timeframe);
-        cal_day_text = view.findViewById(R.id.cal_day_text);
-        cal_day_text.setText("" + TodaysDate.get(Calendar.DAY_OF_MONTH));
+        cal_show_date = view.findViewById(R.id.cal_show_date);
+        cal_show_date.setText(TodaysDate_DAYstr);
 
+        lw_calendar.setVisibility(View.INVISIBLE);
+        cal_show_date.setVisibility(View.INVISIBLE);
+        cal_date.setVisibility(View.INVISIBLE);
+        cal_right.setVisibility(View.INVISIBLE);
+        cal_left.setVisibility(View.INVISIBLE);
+
+
+        ShowRecordsDAY("0", 2);
 
         switch (MainActivity.prf_Language)
         {
@@ -113,61 +125,28 @@ public class fragmentCalendar extends Fragment {
                 break;
         }
 
-        switch (MainActivity.ListView_MODE){
-
-            case 0:
-                cal_day_text.setVisibility(View.VISIBLE);
-                btn_cal_timeframe.setBackgroundResource(R.drawable.cal_showday);
-                ListView_DATE = TodaysDate_Day + "." + TodaysDate_MONTH + "." + TodaysDate_year;
-                cal_date.setText(ListView_DATE);
-                ShowRecordsDAY(ListView_DATE,0);
-                break;
-
-            case 1:
-                cal_day_text.setVisibility(View.INVISIBLE);
-                btn_cal_timeframe.setBackgroundResource(R.drawable.cal_showmonth);
-                ListView_DATE = TodaysDate_MONTH + "." + TodaysDate_year;
-                cal_date.setText(ListView_DATE);
-                ShowRecordsDAY(ListView_DATE,1);
-                break;
-
-            case 2:
-
-                switch (MainActivity.prf_Language)
-                {
-                    case 0:
-                        calendar_nothingfound.setText(R.string.feature_coming_soon);
-                        break;
-                    case 1:
-                        calendar_nothingfound.setText(R.string.ru_feature_coming_soon);
-                        break;
-                }
-
-                btn_cal_timeframe.setBackgroundResource(R.drawable.cal_showlist);
-                break;
-
-
-        }
-
 
         cal_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+        //Jump to current day or current month and show all tasks from it
 
-                TodaysDate_Day = TodaysDate.get(Calendar.DAY_OF_MONTH);
-                TodaysDate_MONTHtmp = TodaysDate.get(Calendar.MONTH) + 1;
-                if (TodaysDate_MONTHtmp < 10) TodaysDate_MONTH = "0" + TodaysDate_MONTHtmp; else TodaysDate_MONTH = "" + TodaysDate_MONTHtmp;
+                TodaysDate_DAYint = TodaysDate.get(Calendar.DAY_OF_MONTH);
+                if (TodaysDate_DAYint < 10) TodaysDate_DAYstr = "0" + TodaysDate_DAYint; else TodaysDate_DAYstr = "" + TodaysDate_DAYint;
+
+                TodaysDate_MONTHint = TodaysDate.get(Calendar.MONTH) + 1;
+                if (TodaysDate_MONTHint < 10) TodaysDate_MONTHstr = "0" + TodaysDate_MONTHint; else TodaysDate_MONTHstr = "" + TodaysDate_MONTHint;
                 TodaysDate_year = TodaysDate.get(Calendar.YEAR);
 
                 switch (MainActivity.ListView_MODE) {
                     case 0:
-                        ListView_DATE = TodaysDate_Day + "." + TodaysDate_MONTH + "." + TodaysDate_year;
+                        ListView_DATE = TodaysDate_DAYstr + "." + TodaysDate_MONTHstr + "." + TodaysDate_year;
                         cal_date.setText(ListView_DATE);
                         ShowRecordsDAY(ListView_DATE,0);
                         break;
 
                     case 1:
-                        ListView_DATE = TodaysDate_MONTH + "." + TodaysDate_year;
+                        ListView_DATE = TodaysDate_MONTHstr + "." + TodaysDate_year;
                         cal_date.setText(ListView_DATE);
                         ShowRecordsDAY(ListView_DATE,1);
                         break;
@@ -194,39 +173,45 @@ public class fragmentCalendar extends Fragment {
                 switch (MainActivity.ListView_MODE) {
                     case 0:
                         MainActivity.ListView_MODE = 1;
-                        cal_day_text.setVisibility(View.INVISIBLE);
+                        custom_calendar.setVisibility(View.VISIBLE);
+                        cal_show_date.setVisibility(View.INVISIBLE);
+
                         btn_cal_timeframe.setBackgroundResource(R.drawable.cal_showmonth);
-                        ListView_DATE = TodaysDate_MONTH + "." + TodaysDate_year;
+                        ListView_DATE = TodaysDate_MONTHstr + "." + TodaysDate_year;
                         cal_date.setText(ListView_DATE);
                         ShowRecordsDAY(ListView_DATE,1);
+
                         break;
 
                     case 1:
-                        cal_day_text.setVisibility(View.INVISIBLE);
+                        MainActivity.ListView_MODE = 2;
+
+                        custom_calendar.setVisibility(View.VISIBLE);
+                        cal_show_date.setVisibility(View.INVISIBLE);
                         btn_cal_timeframe.setBackgroundResource(R.drawable.cal_showlist);
                         lw_calendar.setVisibility(View.INVISIBLE);
-                        switch (MainActivity.prf_Language)
-                        {
-                            case 0:
-                                calendar_nothingfound.setText(R.string.feature_coming_soon);
-                                break;
-                            case 1:
-                                calendar_nothingfound.setText(R.string.ru_feature_coming_soon);
-                                break;
-                        }
                         calendar_nothingfound.setVisibility(View.VISIBLE);
-                        MainActivity.ListView_MODE = 2;
+                        cal_date.setVisibility(View.INVISIBLE);
+                        cal_right.setVisibility(View.INVISIBLE);
+                        cal_left.setVisibility(View.INVISIBLE);
                         break;
 
                     case 2:
                         MainActivity.ListView_MODE = 0;
-                        cal_day_text.setVisibility(View.VISIBLE);
+                        custom_calendar.setVisibility(View.INVISIBLE);
+                        cal_show_date.setVisibility(View.VISIBLE);
                         lw_calendar.setVisibility(View.VISIBLE);
                         calendar_nothingfound.setVisibility(View.INVISIBLE);
+                        cal_date.setVisibility(View.VISIBLE);
+                        cal_right.setVisibility(View.VISIBLE);
+                        cal_left.setVisibility(View.VISIBLE);
+
                         btn_cal_timeframe.setBackgroundResource(R.drawable.cal_showday);
-                        ListView_DATE = TodaysDate_Day + "." + TodaysDate_MONTH + "." + TodaysDate_year;
+                        ListView_DATE = TodaysDate_DAYstr + "." + TodaysDate_MONTHstr + "." + TodaysDate_year;
                         cal_date.setText(ListView_DATE);
                         ShowRecordsDAY(ListView_DATE,0);
+
+
                         break;
                 }
             }
@@ -238,24 +223,27 @@ public class fragmentCalendar extends Fragment {
 
                 switch (MainActivity.ListView_MODE) {
                     case 0:
-                        TodaysDate_Day--;
+                        TodaysDate_DAYint--;
+
+                        if (TodaysDate_DAYint < 10) TodaysDate_DAYstr = "0" + TodaysDate_DAYint; else TodaysDate_DAYstr = "" + TodaysDate_DAYint;
+
                         CalculateDAY_NEXT_PREV(true);
-                        ListView_DATE = TodaysDate_Day + "." + TodaysDate_MONTH + "." + TodaysDate_year;
+                        ListView_DATE = TodaysDate_DAYstr + "." + TodaysDate_MONTHstr + "." + TodaysDate_year;
                         cal_date.setText(ListView_DATE);
                         ShowRecordsDAY(ListView_DATE,0);
                         break;
 
                     case 1:
-                        TodaysDate_MONTHtmp--;
+                        TodaysDate_MONTHint--;
+
                         CalculateMONTH_NEXT_PREV();
-                        ListView_DATE = TodaysDate_MONTH + "." + TodaysDate_year;
+                        ListView_DATE = TodaysDate_MONTHstr + "." + TodaysDate_year;
                         cal_date.setText(ListView_DATE);
                         ShowRecordsDAY(ListView_DATE,1);
                         break;
                     case 2:
                         break;
                 }
-
 
             }
         });
@@ -266,17 +254,20 @@ public class fragmentCalendar extends Fragment {
 
                 switch (MainActivity.ListView_MODE) {
                     case 0:
-                        TodaysDate_Day++;
+                        TodaysDate_DAYint++;
+
+                        if (TodaysDate_DAYint < 10) TodaysDate_DAYstr = "0" + TodaysDate_DAYint; else TodaysDate_DAYstr = "" + TodaysDate_DAYint;
+
                         CalculateDAY_NEXT_PREV(false);
-                        ListView_DATE = TodaysDate_Day + "." + TodaysDate_MONTH + "." + TodaysDate_year;
+                        ListView_DATE = TodaysDate_DAYstr + "." + TodaysDate_MONTHstr + "." + TodaysDate_year;
                         cal_date.setText(ListView_DATE);
                         ShowRecordsDAY(ListView_DATE,0);
                         break;
 
                     case 1:
-                        TodaysDate_MONTHtmp++;
+                        TodaysDate_MONTHint++;
                         CalculateMONTH_NEXT_PREV();
-                        ListView_DATE = TodaysDate_MONTH + "." + TodaysDate_year;
+                        ListView_DATE = TodaysDate_MONTHstr + "." + TodaysDate_year;
                         cal_date.setText(ListView_DATE);
                         ShowRecordsDAY(ListView_DATE,1);
                         break;
@@ -291,9 +282,6 @@ public class fragmentCalendar extends Fragment {
         nav3_top_1create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
 
                 clearVariables();
 
@@ -312,9 +300,6 @@ public class fragmentCalendar extends Fragment {
             @Override
             public void onClick(View v) {
 
-                final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
-
                 clearVariables();
 
                 Fragment targetFragment = new fragmentTodo();
@@ -331,9 +316,6 @@ public class fragmentCalendar extends Fragment {
         nav3_top_4settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
 
                 clearVariables();
 
@@ -602,9 +584,6 @@ public class fragmentCalendar extends Fragment {
 
 
     }
-
-
-
 
     public void ExportPDF(String date, int period) {
 
@@ -900,69 +879,70 @@ public class fragmentCalendar extends Fragment {
 
     public void CalculateMONTH_NEXT_PREV(){
 
-        if (TodaysDate_MONTHtmp <= 0) {
-            TodaysDate_MONTHtmp = 12;
+        if (TodaysDate_MONTHint <= 0) {
+            TodaysDate_MONTHint = 12;
             TodaysDate_year--;
-        } else if (TodaysDate_MONTHtmp >= 13) {
-            TodaysDate_MONTHtmp = 1;
+        } else if (TodaysDate_MONTHint >= 13) {
+            TodaysDate_MONTHint = 1;
             TodaysDate_year++;
         }
 
-        if (TodaysDate_MONTHtmp < 10) TodaysDate_MONTH = "0" + TodaysDate_MONTHtmp; else TodaysDate_MONTH = "" + TodaysDate_MONTHtmp;
+        if (TodaysDate_MONTHint < 10) TodaysDate_MONTHstr = "0" + TodaysDate_MONTHint; else TodaysDate_MONTHstr = "" + TodaysDate_MONTHint;
 
     }
-
 
     private void CalculateDAY_NEXT_PREV(boolean NextDay){
         // TRUE - I decrease day
         // FALSE - increase
         if (NextDay) {
 
-            if ((TodaysDate_Day <= 0) &&
-                    ((TodaysDate_MONTHtmp == 5) || (TodaysDate_MONTHtmp == 7) ||
-                            (TodaysDate_MONTHtmp == 10) || (TodaysDate_MONTHtmp == 12))) {
-                TodaysDate_Day = 30;TodaysDate_MONTHtmp--;
-            } else if ((TodaysDate_Day <= 0) &&
-                    ((TodaysDate_MONTHtmp == 2) || (TodaysDate_MONTHtmp == 4) ||
-                            (TodaysDate_MONTHtmp == 6) || (TodaysDate_MONTHtmp == 8) || (TodaysDate_MONTHtmp == 9) || (TodaysDate_MONTHtmp == 11))) {
-                TodaysDate_Day = 31; TodaysDate_MONTHtmp--;
+            if ((TodaysDate_DAYint <= 0) &&
+                    ((TodaysDate_MONTHint == 5) || (TodaysDate_MONTHint == 7) ||
+                            (TodaysDate_MONTHint == 10) || (TodaysDate_MONTHint == 12))) {
+                TodaysDate_DAYint = 30;
+                TodaysDate_MONTHint--;
+            } else if ((TodaysDate_DAYint <= 0) &&
+                    ((TodaysDate_MONTHint == 2) || (TodaysDate_MONTHint == 4) ||
+                            (TodaysDate_MONTHint == 6) || (TodaysDate_MONTHint == 8) || (TodaysDate_MONTHint == 9) || (TodaysDate_MONTHint == 11))) {
+                TodaysDate_DAYint = 31; TodaysDate_MONTHint--;
             } else
                 //Condition for February
-                if ((TodaysDate_Day <= 0) && (TodaysDate_MONTHtmp == 3) && (TodaysDate_year % 4 == 0)) {
-                    TodaysDate_Day = 29; TodaysDate_MONTHtmp--;
-                } else if ((TodaysDate_Day <= 0) && (TodaysDate_MONTHtmp == 3) && (TodaysDate_year % 4 != 0)) {
-                    TodaysDate_Day = 28;TodaysDate_MONTHtmp--;
-                } else if ((TodaysDate_Day <= 0) && (TodaysDate_MONTHtmp == 1)) {
-                    TodaysDate_Day = 31;   TodaysDate_MONTHtmp = 12; TodaysDate_year--;
-                };
+                if ((TodaysDate_DAYint <= 0) && (TodaysDate_MONTHint == 3) && (TodaysDate_year % 4 == 0)) {
+                    TodaysDate_DAYint = 29; TodaysDate_MONTHint--;
+                } else if ((TodaysDate_DAYint <= 0) && (TodaysDate_MONTHint == 3) && (TodaysDate_year % 4 != 0)) {
+                    TodaysDate_DAYint = 28;
+                    TodaysDate_MONTHint--;
+                } else if ((TodaysDate_DAYint <= 0) && (TodaysDate_MONTHint == 1)) {
+                    TodaysDate_DAYint = 31;   TodaysDate_MONTHint = 12; TodaysDate_year--;
+                }
 
         } else if (!NextDay){
-            if ((TodaysDate_Day >= 32)&&
-                    ((TodaysDate_MONTHtmp == 1)||(TodaysDate_MONTHtmp == 3)||(TodaysDate_MONTHtmp == 5)||(TodaysDate_MONTHtmp == 7)||
-                            (TodaysDate_MONTHtmp == 8)||(TodaysDate_MONTHtmp == 10)||(TodaysDate_MONTHtmp == 12)))
-            { TodaysDate_Day = 1; TodaysDate_MONTHtmp++; }
+            if ((TodaysDate_DAYint >= 32)&&
+                    ((TodaysDate_MONTHint == 1)||(TodaysDate_MONTHint == 3)||(TodaysDate_MONTHint == 5)||(TodaysDate_MONTHint == 7)||
+                            (TodaysDate_MONTHint == 8)||(TodaysDate_MONTHint == 10)||(TodaysDate_MONTHint == 12)))
+            { TodaysDate_DAYint = 1; TodaysDate_MONTHint++; }
 
             else
 
-            if ((TodaysDate_Day >= 31)&&
-                    ((TodaysDate_MONTHtmp == 4)||(TodaysDate_MONTHtmp == 6)||
-                            (TodaysDate_MONTHtmp == 9)||(TodaysDate_MONTHtmp == 11)))
+            if ((TodaysDate_DAYint >= 31)&&
+                    ((TodaysDate_MONTHint == 4)||(TodaysDate_MONTHint == 6)||
+                            (TodaysDate_MONTHint == 9)||(TodaysDate_MONTHint == 11)))
             {
-                TodaysDate_Day = 1; TodaysDate_MONTHtmp++;
+                TodaysDate_DAYint = 1; TodaysDate_MONTHint++;
             } else
                 //Condition for February
-                if  ((TodaysDate_Day >= 30)&&(TodaysDate_MONTHtmp == 2)&&(TodaysDate_year%4 == 0)){
-                    TodaysDate_Day = 1; TodaysDate_MONTHtmp++;
+                if  ((TodaysDate_DAYint >= 30)&&(TodaysDate_MONTHint == 2)&&(TodaysDate_year%4 == 0)){
+                    TodaysDate_DAYint = 1; TodaysDate_MONTHint++;
                 } else
-                if  ((TodaysDate_Day >= 29)&&(TodaysDate_MONTHtmp == 2)&&(TodaysDate_year%4 != 0)){
-                    TodaysDate_Day = 1; TodaysDate_MONTHtmp++;
-                };
-            if (TodaysDate_MONTHtmp >= 13)
+                if  ((TodaysDate_DAYint >= 29)&&(TodaysDate_MONTHint == 2)&&(TodaysDate_year%4 != 0)){
+                    TodaysDate_DAYint = 1; TodaysDate_MONTHint++;
+                }
+            if (TodaysDate_MONTHint >= 13)
             {
-                TodaysDate_Day = 1; TodaysDate_MONTHtmp = 1; TodaysDate_year = TodaysDate_year + 1;
-            };
+                TodaysDate_DAYint = 1; TodaysDate_MONTHint = 1; TodaysDate_year = TodaysDate_year + 1;
+            }
         }
-        if (TodaysDate_MONTHtmp < 10) TodaysDate_MONTH = "0" + TodaysDate_MONTHtmp; else TodaysDate_MONTH = "" + TodaysDate_MONTHtmp;
+        if (TodaysDate_MONTHint < 10) TodaysDate_MONTHstr = "0" + TodaysDate_MONTHint; else TodaysDate_MONTHstr = "" + TodaysDate_MONTHint;
     }
 
     int dbId;
@@ -973,7 +953,10 @@ public class fragmentCalendar extends Fragment {
     Cursor data;
 
     private void ShowRecordsDAY(String date, int period){
-        // Period 0 = day,   1 = month,   2 = list
+        // Here i show info in following formats:
+        // 0 - I show specific day and what is planned there
+        // 1 - I show specific month
+        // 2 - I show calendar
 
         int NumberOfRecords = 0;
         dbHelper = new DBHelper(getActivity());
@@ -982,6 +965,7 @@ public class fragmentCalendar extends Fragment {
         switch (period){
             case 0: data = dbHelper.getSpecificDay(date);break;
             case 1: data = dbHelper.getSpecificMonth(date);break;
+            case 2: data = dbHelper.getAllData();break;
             default: data = dbHelper.getSpecificDay(date);break;
         }
 
@@ -997,77 +981,136 @@ public class fragmentCalendar extends Fragment {
             dbDateDeadline = data.getString(data.getColumnIndex(DBHelper.KEY_TASK_DEADLINE));
             dbLabelColor = data.getString(data.getColumnIndex(DBHelper.KEY_LABEL_COLOR));
 
-            ListView_Calendar Records = new ListView_Calendar(dbDatePlanned, dbDateDeadline, dbName, dbStatus, dbPrio, dbLabelColor);
-            RecordsList.add(Records);
+            // Here I fill 2 adapters, for DAY/TASKS and for MONTH TASKS.
+            if ((period == 0)||(period == 1)){
 
-            ListAdapter_Calendar adapter;
-            adapter = new ListAdapter_Calendar(getActivity(), R.layout.listview_calendar, RecordsList);
+                ListView_Calendar Records = new ListView_Calendar(dbDatePlanned, dbDateDeadline, dbName, dbStatus, dbPrio, dbLabelColor);
+                RecordsList.add(Records);
+                ListAdapter_Calendar adapter;
+                adapter = new ListAdapter_Calendar(getActivity(), R.layout.listview_calendar, RecordsList);
+                lw_calendar.setAdapter(adapter);
 
-            lw_calendar.setAdapter(adapter);
+                lw_calendar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Bundle bundle = new Bundle();
+                        data.moveToPosition(position);
 
-            lw_calendar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Bundle bundle = new Bundle();
-                    data.moveToPosition(position);
+                        MainActivity.prf_ListViewPosition = position;
 
-                    MainActivity.prf_ListViewPosition = position;
+                        bundle.putInt(DBHelper.KEY_ID, data.getInt(data.getColumnIndex(DBHelper.KEY_ID)));
+                        bundle.putString(DBHelper.KEY_NAME, data.getString(data.getColumnIndex(DBHelper.KEY_NAME)));
+                        bundle.putInt(DBHelper.KEY_STATUS, data.getInt(data.getColumnIndex(DBHelper.KEY_STATUS)));
+                        bundle.putInt(DBHelper.KEY_PRIO, data.getInt(data.getColumnIndex(DBHelper.KEY_PRIO)));
+                        bundle.putString(DBHelper.KEY_TASK_CREATED, data.getString(data.getColumnIndex(DBHelper.KEY_TASK_CREATED)));
+                        bundle.putString(DBHelper.KEY_TASK_PLANNED, data.getString(data.getColumnIndex(DBHelper.KEY_TASK_PLANNED)));
+                        bundle.putString(DBHelper.KEY_TASK_DEADLINE, data.getString(data.getColumnIndex(DBHelper.KEY_TASK_DEADLINE)));
+                        bundle.putString(DBHelper.KEY_LABEL, data.getString(data.getColumnIndex(DBHelper.KEY_LABEL)));
+                        bundle.putString(DBHelper.KEY_LABEL_COLOR, data.getString(data.getColumnIndex(DBHelper.KEY_LABEL_COLOR)));
+                        bundle.putInt(DBHelper.KEY_TIME_LOGGED, data.getInt(data.getColumnIndex(DBHelper.KEY_TIME_LOGGED)));
 
-                    bundle.putInt(DBHelper.KEY_ID, data.getInt(data.getColumnIndex(DBHelper.KEY_ID)));
-                    bundle.putString(DBHelper.KEY_NAME, data.getString(data.getColumnIndex(DBHelper.KEY_NAME)));
-                    bundle.putInt(DBHelper.KEY_STATUS, data.getInt(data.getColumnIndex(DBHelper.KEY_STATUS)));
-                    bundle.putInt(DBHelper.KEY_PRIO, data.getInt(data.getColumnIndex(DBHelper.KEY_PRIO)));
-                    bundle.putString(DBHelper.KEY_TASK_CREATED, data.getString(data.getColumnIndex(DBHelper.KEY_TASK_CREATED)));
-                    bundle.putString(DBHelper.KEY_TASK_PLANNED, data.getString(data.getColumnIndex(DBHelper.KEY_TASK_PLANNED)));
-                    bundle.putString(DBHelper.KEY_TASK_DEADLINE, data.getString(data.getColumnIndex(DBHelper.KEY_TASK_DEADLINE)));
-                    bundle.putString(DBHelper.KEY_LABEL, data.getString(data.getColumnIndex(DBHelper.KEY_LABEL)));
-                    bundle.putString(DBHelper.KEY_LABEL_COLOR, data.getString(data.getColumnIndex(DBHelper.KEY_LABEL_COLOR)));
-                    bundle.putInt(DBHelper.KEY_TIME_LOGGED, data.getInt(data.getColumnIndex(DBHelper.KEY_TIME_LOGGED)));
+                        bundle.putString("MODE", "CALENDAR");
 
-                    bundle.putString("MODE", "CALENDAR");
+                        // I need this to be able to return back after I edit a record
+                        MainActivity.ListView_DAY = TodaysDate_DAYint;
+                        MainActivity.ListView_MONTH = TodaysDate_MONTHint;
 
-                    // I need this to be able to return back after I edit a record
-                    MainActivity.ListView_DAY = TodaysDate_Day;
-                    MainActivity.ListView_MONTH = TodaysDate_MONTHtmp;
+                        Fragment targetFragment = new fragmentEdit();
+                        assert getFragmentManager() != null;
+                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        transaction.replace(R.id.fragment_container, targetFragment ); // give your fragment container id in first parameter
+                        transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+                        targetFragment.setArguments(bundle);
+                        transaction.commit();
 
-                    Fragment targetFragment = new fragmentEdit();
-                    assert getFragmentManager() != null;
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fragment_container, targetFragment ); // give your fragment container id in first parameter
-                    transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
-                    targetFragment.setArguments(bundle);
-                    transaction.commit();
+                    }
+                });
+            }
 
+            // Here I fill only calendar and color days which have tasks.
+            if ((period == 2)&&(!dbDatePlanned.equals("Not set"))){
+
+                int _year, _month, _day;
+                if (dbDatePlanned.length() <= 9 ) {
+                    // This code I use for old version when date format doesn't count 0 in the day. For ex. 1.05.2019
+                    _day = Integer.parseInt(dbDatePlanned.substring(0, 1));
+                    _month = Integer.parseInt(dbDatePlanned.substring(2, 4));
+                    _year = Integer.parseInt(dbDatePlanned.substring(5, 9));
+                }else
+                {
+                    // This code I use for old version when date format counts 0 in the day. For ex. 01.05.2019
+                    _day = Integer.parseInt(dbDatePlanned.substring(0, 2));
+                    _month = Integer.parseInt(dbDatePlanned.substring(3, 5));
+                    _year = Integer.parseInt(dbDatePlanned.substring(6, 10));
                 }
-            });
+
+                custom_calendar.markDate(new DateData(_year, _month, _day).
+                        setMarkStyle(new MarkStyle(MarkStyle.BACKGROUND, Color.RED)));
+
+                custom_calendar.setOnDateClickListener(new OnDateClickListener() {
+                    @Override
+                    public void onDateClick(View view, DateData date) {
+
+                        String getDAYstr, getMONTHstr;
+                        if (date.getDay()< 10) getDAYstr = "0" + date.getDay();else getDAYstr = "" + date.getDay();
+                        if (date.getMonth() < 10) getMONTHstr = "0" + date.getMonth();else getMONTHstr = "" + date.getMonth();
+                        String ShowTasksInDate = getDAYstr + "." + getMONTHstr + "." + date.getYear();
+
+                        // TODO,  if there are tasks in the date, I need to switch to DAY TASKS view
+                        // and show these tasks
+                        custom_calendar.setVisibility(View.INVISIBLE);
+                        lw_calendar.setVisibility(View.VISIBLE);
+                        btn_cal_timeframe.setBackgroundResource(R.drawable.cal_showday);
+                        cal_show_date.setVisibility(View.VISIBLE);
+                        ShowRecordsDAY(ShowTasksInDate,0);
+
+                        cal_date.setVisibility(View.VISIBLE);
+                        cal_right.setVisibility(View.VISIBLE);
+                        cal_left.setVisibility(View.VISIBLE);
+
+                        MainActivity.ListView_MODE = 0;
+
+                        Toast.makeText(getActivity(), ShowTasksInDate, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
         }
 
-        if (NumberOfRecords == 0)
+        if ((NumberOfRecords == 0)&&(period != 2))
         {
+            // If no records this day or month, I show NO TASKS message
             lw_calendar.setVisibility(View.INVISIBLE);
 
             switch (MainActivity.prf_Language)
             {
-                case 0:
-                    calendar_nothingfound.setText(R.string.no_tasks_found);
-                    break;
-                case 1:
-                    calendar_nothingfound.setText(R.string.ru_no_tasks_found);
-                    break;
+                case 0:calendar_nothingfound.setText(R.string.no_tasks_found);break;
+                case 1:calendar_nothingfound.setText(R.string.ru_no_tasks_found);break;
             }
 
             calendar_nothingfound.setVisibility(View.VISIBLE);
 
-        } else {
+        }
+        if ((NumberOfRecords != 0)&&(period != 2))
+        {
+            // If there are any records this day or month found, I show them in the list
             lw_calendar.setVisibility(View.VISIBLE);
             calendar_nothingfound.setVisibility(View.INVISIBLE);
-
         }
+        if (period == 2)
+        {
+            //Here I show calendar. Doesn't matter if there are records or not.
+            //Calendar will be empty or with dates marked
+            lw_calendar.setVisibility(View.INVISIBLE);
+            custom_calendar.setVisibility(View.VISIBLE);
+            calendar_nothingfound.setVisibility(View.INVISIBLE);
+        }
+
     }
 
 
     private static String MonthToString(int Month){
-        String Month_Name = "";
+        String Month_Name;
 
         switch (MainActivity.prf_Language)
         {
