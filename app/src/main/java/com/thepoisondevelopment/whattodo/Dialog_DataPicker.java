@@ -122,7 +122,6 @@ public class Dialog_DataPicker extends DialogFragment implements View.OnClickLis
 
                         tmpDate = "" + TodayDay + "." + TodaysMonth + "." + year;
 
-
                     }
                 });
 
@@ -165,13 +164,8 @@ public class Dialog_DataPicker extends DialogFragment implements View.OnClickLis
                 String input = "";
 
                 switch (bld_PlannedDeadline) {
-                    case 0: input = prm_Planned = tmpDate;
-                        Log.d(TAG, " ============ " + prm_Planned);
-
-                    break;
-                    case 1: input = prm_Deadline = tmpDate;
-                        Log.d(TAG, " ============ " + prm_Deadline);
-                    break;
+                    case 0: input = prm_Planned = tmpDate;break;
+                    case 1: input = prm_Deadline = tmpDate;break;
                 }
 
                 mOnInputSelected.sendInput(input);

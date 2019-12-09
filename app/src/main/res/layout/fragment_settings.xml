@@ -182,7 +182,7 @@
                 android:id="@+id/tv_language_icon"
                 android:layout_width="45dp"
                 android:layout_height="26dp"
-                android:layout_marginStart="250dp"
+                android:layout_marginStart="230dp"
                 android:layout_marginTop="3dp"
                 android:background="@drawable/btn_lang_en_selected" />
 

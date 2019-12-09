@@ -93,7 +93,7 @@
     <string name="btn_create">CREATE</string>
     <string name="application">APPLICATION</string>
     <string name="clear_all_data">DELETE ALL DATA</string>
-    <string name="clear_database">CLEAR DATABASE</string>
+    <string name="clear_database">CLEAR COMPLETED</string>
     <string name="ru_clear_database">ПОЧИСТИТЬ БАЗУ</string>
     <string name="language">Language:</string>
     <string name="general">GENERAL</string>

@@ -1,12 +1,33 @@
 package com.thepoisondevelopment.whattodo;
 
+/*
+
+Hello, thePoison is here
+
+I developed this application initially for my needs as
+I wanted to record all tasks and ideas that suddenly appear in my head
+
+I am not a super programmer, I am learning, so the code and solutions here might not be ideal.
+
+This application you can find in public repository. I am open for any feedback, comments, ideas.
+
+There are a lot of stuff that I want to include to this app, but due to lack of time and
+developing other projects, I am slowly enhancing this app.
+
+Anyways, if you can propose a better solutions and would like to add features, please do so!
+I am gladly will release a new update
+
+Cheers
+thePoison development
+
+*/
+
+
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Display;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
         prf_ColorTheme = "#3a67b3";
         prf_ColorThemeAux1 = "#234379";
         prf_Language = prefSettings.getInt("prfLanguage",0); // Language
-        prf_FullView = prefSettings.getInt("prfFullView",1); // Language
-        prf_VibraFeedback = prefSettings.getInt("prfVibra",1); // Language
+        prf_FullView = prefSettings.getInt("prfFullView",1); //
+        prf_VibraFeedback = prefSettings.getInt("prfVibra",1); //
 
 
         Configuration config = getResources().getConfiguration();
@@ -73,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 
 
 }

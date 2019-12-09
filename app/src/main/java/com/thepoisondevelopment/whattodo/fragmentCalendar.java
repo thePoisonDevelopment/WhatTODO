@@ -1,5 +1,6 @@
 package com.thepoisondevelopment.whattodo;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -25,8 +26,10 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 import sun.bob.mcalendarview.MCalendarView;
@@ -43,18 +46,19 @@ public class fragmentCalendar extends Fragment {
     SharedPreferences prefSettings;
 
     private static final String TAG = "Settings Fragment";
+    //Icons and Names for TOP Menu
     Button nav3_top_1create, nav3_top_2todolist, nav3_top_4settings;
     TextView nav3_top_1create_text, nav3_top_2todolist_text, nav3_top_4settings_text, calendar_nothingfound;
 
+    // Navigation buttons between dates
     Button cal_left, cal_right, cal_exportPDF;
     Button btn_cal_timeframe;
     TextView cal_date, cal_show_date;
 
+    //Stuff needed to activating calendars and dates
     private MCalendarView custom_calendar;
     ListView lw_calendar;
-
     Calendar TodaysDate = Calendar.getInstance();
-
     String TodaysDate_MONTHstr, TodaysDate_DAYstr;
     int TodaysDate_DAYint, TodaysDate_MONTHint, TodaysDate_year;
 
@@ -83,9 +87,7 @@ public class fragmentCalendar extends Fragment {
         custom_calendar = view.findViewById(R.id.custom_calendar);
         lw_calendar = view.findViewById(R.id.lw_calendar);
         calendar_nothingfound = view.findViewById(R.id.calendar_nothingfound);
-        calendar_nothingfound.setVisibility(View.INVISIBLE);
 
-        MainActivity.ListView_MODE = 2; // I set this value to show calendar from the start
 
         // Here I get today's day in a format DD.MM.YYYY
         TodaysDate_DAYint = TodaysDate.get(Calendar.DAY_OF_MONTH);
@@ -104,8 +106,8 @@ public class fragmentCalendar extends Fragment {
         cal_right.setVisibility(View.INVISIBLE);
         cal_left.setVisibility(View.INVISIBLE);
 
-
-        ShowRecordsDAY("0", 2);
+        MainActivity.ListView_MODE = 2; // I set this value to show calendar from the start
+        ShowRecordsDAY("0", MainActivity.ListView_MODE);
 
         switch (MainActivity.prf_Language)
         {
@@ -129,11 +131,10 @@ public class fragmentCalendar extends Fragment {
         cal_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-        //Jump to current day or current month and show all tasks from it
+                //Jump to current day or current month and show all tasks from it
 
                 TodaysDate_DAYint = TodaysDate.get(Calendar.DAY_OF_MONTH);
                 if (TodaysDate_DAYint < 10) TodaysDate_DAYstr = "0" + TodaysDate_DAYint; else TodaysDate_DAYstr = "" + TodaysDate_DAYint;
-
                 TodaysDate_MONTHint = TodaysDate.get(Calendar.MONTH) + 1;
                 if (TodaysDate_MONTHint < 10) TodaysDate_MONTHstr = "0" + TodaysDate_MONTHint; else TodaysDate_MONTHstr = "" + TodaysDate_MONTHint;
                 TodaysDate_year = TodaysDate.get(Calendar.YEAR);
@@ -142,13 +143,13 @@ public class fragmentCalendar extends Fragment {
                     case 0:
                         ListView_DATE = TodaysDate_DAYstr + "." + TodaysDate_MONTHstr + "." + TodaysDate_year;
                         cal_date.setText(ListView_DATE);
-                        ShowRecordsDAY(ListView_DATE,0);
+                        ShowRecordsDAY(ListView_DATE,MainActivity.ListView_MODE);
                         break;
 
                     case 1:
                         ListView_DATE = TodaysDate_MONTHstr + "." + TodaysDate_year;
                         cal_date.setText(ListView_DATE);
-                        ShowRecordsDAY(ListView_DATE,1);
+                        ShowRecordsDAY(ListView_DATE,MainActivity.ListView_MODE);
                         break;
 
                 }
@@ -176,7 +177,7 @@ public class fragmentCalendar extends Fragment {
                         custom_calendar.setVisibility(View.VISIBLE);
                         cal_show_date.setVisibility(View.INVISIBLE);
 
-                        btn_cal_timeframe.setBackgroundResource(R.drawable.cal_showmonth);
+                        btn_cal_timeframe.setBackgroundResource(R.drawable.cal_showlist);
                         ListView_DATE = TodaysDate_MONTHstr + "." + TodaysDate_year;
                         cal_date.setText(ListView_DATE);
                         ShowRecordsDAY(ListView_DATE,1);
@@ -188,7 +189,7 @@ public class fragmentCalendar extends Fragment {
 
                         custom_calendar.setVisibility(View.VISIBLE);
                         cal_show_date.setVisibility(View.INVISIBLE);
-                        btn_cal_timeframe.setBackgroundResource(R.drawable.cal_showlist);
+                        btn_cal_timeframe.setBackgroundResource(R.drawable.cal_showmonth);
                         lw_calendar.setVisibility(View.INVISIBLE);
                         calendar_nothingfound.setVisibility(View.VISIBLE);
                         cal_date.setVisibility(View.INVISIBLE);
@@ -241,8 +242,6 @@ public class fragmentCalendar extends Fragment {
                         cal_date.setText(ListView_DATE);
                         ShowRecordsDAY(ListView_DATE,1);
                         break;
-                    case 2:
-                        break;
                 }
 
             }
@@ -255,9 +254,7 @@ public class fragmentCalendar extends Fragment {
                 switch (MainActivity.ListView_MODE) {
                     case 0:
                         TodaysDate_DAYint++;
-
                         if (TodaysDate_DAYint < 10) TodaysDate_DAYstr = "0" + TodaysDate_DAYint; else TodaysDate_DAYstr = "" + TodaysDate_DAYint;
-
                         CalculateDAY_NEXT_PREV(false);
                         ListView_DATE = TodaysDate_DAYstr + "." + TodaysDate_MONTHstr + "." + TodaysDate_year;
                         cal_date.setText(ListView_DATE);
@@ -270,8 +267,6 @@ public class fragmentCalendar extends Fragment {
                         ListView_DATE = TodaysDate_MONTHstr + "." + TodaysDate_year;
                         cal_date.setText(ListView_DATE);
                         ShowRecordsDAY(ListView_DATE,1);
-                        break;
-                    case 2:
                         break;
                 }
 
@@ -1044,33 +1039,70 @@ public class fragmentCalendar extends Fragment {
                     _year = Integer.parseInt(dbDatePlanned.substring(6, 10));
                 }
 
-                custom_calendar.markDate(new DateData(_year, _month, _day).
-                        setMarkStyle(new MarkStyle(MarkStyle.BACKGROUND, Color.RED)));
+                // Below I calculate the difference between days and
+                // paint days in RED - actual date and Planned date is near
+                // Green color - if Planned date is far advance current date
+                Date date1;
+                Date date2;
+
+                try {
+
+                    @SuppressLint("SimpleDateFormat") SimpleDateFormat dates = new SimpleDateFormat("dd.mm.yyyy");
+
+                    TodaysDate_DAYint = TodaysDate.get(Calendar.DAY_OF_MONTH);
+                    if (TodaysDate_DAYint < 10) TodaysDate_DAYstr = "0" + TodaysDate_DAYint; else TodaysDate_DAYstr = "" + TodaysDate_DAYint;
+                    TodaysDate_MONTHint = TodaysDate.get(Calendar.MONTH) + 1;
+                    if (TodaysDate_MONTHint < 10) TodaysDate_MONTHstr = "0" + TodaysDate_MONTHint; else TodaysDate_MONTHstr = "" + TodaysDate_MONTHint;
+                    TodaysDate_year = TodaysDate.get(Calendar.YEAR);
+
+                    date1 = dates.parse(TodaysDate_DAYstr + "." + TodaysDate_MONTHstr + "." + TodaysDate_year);
+                    date2 = dates.parse(dbDatePlanned);
+
+                    long difference = date2.getTime() - date1.getTime();
+                    long differenceDates = difference / (24 * 60 * 60 *  1000);
+
+                    if (differenceDates <= 2) {
+                        custom_calendar.markDate(new DateData(_year, _month, _day).
+                                setMarkStyle(new MarkStyle(MarkStyle.BACKGROUND, Color.RED)));
+                    }else if ((differenceDates >= 3)&&(differenceDates <= 5)) {
+                        custom_calendar.markDate(new DateData(_year, _month, _day).
+                                setMarkStyle(new MarkStyle(MarkStyle.BACKGROUND, Color.parseColor("#F79300"))));
+                    } else {
+                        custom_calendar.markDate(new DateData(_year, _month, _day).
+                                setMarkStyle(new MarkStyle(MarkStyle.BACKGROUND, Color.parseColor("#1BAA0A"))));
+                    }
+
+                } catch (Exception exception) {
+                    Log.e ("Didn't work", "exception " + exception);
+
+                }
 
                 custom_calendar.setOnDateClickListener(new OnDateClickListener() {
                     @Override
                     public void onDateClick(View view, DateData date) {
 
+                        TodaysDate_DAYint = date.getDay();
+                        TodaysDate_MONTHint = date.getMonth();
                         String getDAYstr, getMONTHstr;
                         if (date.getDay()< 10) getDAYstr = "0" + date.getDay();else getDAYstr = "" + date.getDay();
                         if (date.getMonth() < 10) getMONTHstr = "0" + date.getMonth();else getMONTHstr = "" + date.getMonth();
                         String ShowTasksInDate = getDAYstr + "." + getMONTHstr + "." + date.getYear();
 
-                        // TODO,  if there are tasks in the date, I need to switch to DAY TASKS view
-                        // and show these tasks
+
                         custom_calendar.setVisibility(View.INVISIBLE);
                         lw_calendar.setVisibility(View.VISIBLE);
                         btn_cal_timeframe.setBackgroundResource(R.drawable.cal_showday);
                         cal_show_date.setVisibility(View.VISIBLE);
-                        ShowRecordsDAY(ShowTasksInDate,0);
-
                         cal_date.setVisibility(View.VISIBLE);
                         cal_right.setVisibility(View.VISIBLE);
                         cal_left.setVisibility(View.VISIBLE);
+                        cal_date.setText(ShowTasksInDate);
 
+                        // TODO jump to selected date. Now it shows current date
                         MainActivity.ListView_MODE = 0;
+                        ShowRecordsDAY(ShowTasksInDate,MainActivity.ListView_MODE);
 
-                        Toast.makeText(getActivity(), ShowTasksInDate, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(), ShowTasksInDate, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -1081,21 +1113,15 @@ public class fragmentCalendar extends Fragment {
         {
             // If no records this day or month, I show NO TASKS message
             lw_calendar.setVisibility(View.INVISIBLE);
-
-            switch (MainActivity.prf_Language)
-            {
-                case 0:calendar_nothingfound.setText(R.string.no_tasks_found);break;
-                case 1:calendar_nothingfound.setText(R.string.ru_no_tasks_found);break;
-            }
-
             calendar_nothingfound.setVisibility(View.VISIBLE);
-
+            custom_calendar.setVisibility(View.INVISIBLE);
         }
         if ((NumberOfRecords != 0)&&(period != 2))
         {
             // If there are any records this day or month found, I show them in the list
             lw_calendar.setVisibility(View.VISIBLE);
             calendar_nothingfound.setVisibility(View.INVISIBLE);
+            custom_calendar.setVisibility(View.INVISIBLE);
         }
         if (period == 2)
         {
@@ -1171,8 +1197,6 @@ public class fragmentCalendar extends Fragment {
         }
         return Month_Name;
     }
-
-
 
 
 }
